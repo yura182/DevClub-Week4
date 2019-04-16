@@ -1,11 +1,11 @@
 #include "AriProgIterator.h"
 
-AriProgIterator::AriProgIterator(int first, int step, int limit) {
+AriProgIterator::AriProgIterator(int first, int step, int size) {
     this->first = first;
     this->step = step;
-    this->limit = limit;
+    this->size = size;
     this->currentValue = first;
-    this->currentIndex = 0;
+    this->currentIndex = 1;
 }
 
 AriProgIterator::~AriProgIterator() {}
@@ -15,44 +15,68 @@ int AriProgIterator::value() const {
 }
 
 bool AriProgIterator::end() const {
-    return this->currentValue > this->limit;
+    return this->currentIndex > this->size;
 }
 
-bool AriProgIterator::begin() const {
-    return this->currentValue < this->first;
+bool AriProgIterator::start() const {
+    return this->currentIndex < 1;
 }
 
 void AriProgIterator::next() {
     if ( this->end() ) {
         return;
     }
+    
+    if ( this->start() ) {
+        this->currentIndex += 1;
+    }
+    
     this->currentIndex += 1;
-    this->currentValue += this->step;
+    
+    if ( this->end() ) {
+        return;
+    } else {
+        this->currentValue += this->step;
+    }
 }
 
 void AriProgIterator::prev() {
-    if ( this->begin() ) {
+    if ( this->start() ) {
         return;
     }
+    
+    if ( this->end() ) {
+        this->currentIndex -= 1;
+    }
+    
     this->currentIndex -= 1;
-    this->currentValue -= this->step;
+    
+    if ( this->start() ) {
+        return;
+    } else {
+        this->currentValue -= this->step;
+    }
 }
 
 void AriProgIterator::move(int index) {
-    int temp = this->currentIndex;
-    
-    this->currentIndex = index - 1;
-    this->currentValue = this->currentIndex * this->step + this->first;
-    
-    if ( this->begin() || this->end() ) {
-        this->currentIndex = temp;
-        this->currentValue = this->currentIndex * this->step + this->first;
+    if ( index > this->size ) {
+        this->currentIndex = size;
+        this->currentValue = this->first + (this->currentIndex - 1) * this->step;
         return;
     }
+    
+    if ( index <= 1 ) {
+        this->currentIndex = 1;
+        this->currentValue = this->first;
+        return;
+    }
+    
+    this->currentIndex = index;
+    this->currentValue = this->first + (this->currentIndex - 1) * this->step;
 }
 
 void AriProgIterator::reset() {
-    this->currentIndex = 0;
+    this->currentIndex = 1;
     this->currentValue = this->first;
 }
 
@@ -77,11 +101,13 @@ int AriProgIterator::operator*() const {
 }
 
 int AriProgIterator::operator[](int index) const {
-    int result = this->step * index + this->first;
-    
-    if ( result > this->limit || result < this->first ) {
-        return;
+    if ( index > this->size ) {
+        index =  this->size;
     }
     
-    return result;
+    if ( index <= 1 ) {
+        index = this->first;
+    }
+    
+    return this->step * (index - 1) + this->first;;
 }

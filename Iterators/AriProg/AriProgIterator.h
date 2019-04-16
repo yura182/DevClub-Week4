@@ -5,16 +5,16 @@ class AriProgIterator {
     private:
         int first;
         int step;
-        int last;
+        int size;
         int currentValue;
         int currentIndex;
     public:
-        AriProgIterator(int first, int step, int last);
+        AriProgIterator(int first, int step, int size);
         ~AriProgIterator();
         
         int value() const;
         bool end() const;
-        bool begin() const;
+        bool start() const;
         void next();
         void prev();
         void move(int index);
