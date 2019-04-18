@@ -1,18 +1,19 @@
 #ifndef ARIPROGITERATOR_H
 #define ARIPROGITERATOR_H
 
+template <class T>
 class AriProgIterator {
     private:
-        int first;
-        int step;
+        T first;
+        T step;
         int size;
-        int currentValue;
+        T currentValue;
         int currentIndex;
     public:
-        AriProgIterator(int first, int step, int size);
+        AriProgIterator(T first, T step, int size);
         ~AriProgIterator();
         
-        int value() const;
+        T value() const;
         bool end() const;
         bool start() const;
         void next();
@@ -24,8 +25,8 @@ class AriProgIterator {
         void operator++(int);
         void operator--();
         void operator--(int);
-        int operator*() const;
-        int operator[](int index) const;
+        T operator*() const;
+        T operator[](int index) const;
 };
 
 #endif // AROPROGITERATOR_H

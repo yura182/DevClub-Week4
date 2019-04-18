@@ -1,6 +1,7 @@
 #include "AriProgIterator.h"
 
-AriProgIterator::AriProgIterator(int first, int step, int size) {
+template <class T>
+AriProgIterator<T>::AriProgIterator(T first, T step, int size) {
     this->first = first;
     this->step = step;
     this->size = size;
@@ -8,21 +9,26 @@ AriProgIterator::AriProgIterator(int first, int step, int size) {
     this->currentIndex = 1;
 }
 
-AriProgIterator::~AriProgIterator() {}
+template <class T>
+AriProgIterator<T>::~AriProgIterator() {}
 
-int AriProgIterator::value() const {
+template <class T>
+T AriProgIterator<T>::value() const {
     return this->currentValue;
 }
 
-bool AriProgIterator::end() const {
+template <class T>
+bool AriProgIterator<T>::end() const {
     return this->currentIndex > this->size;
 }
 
-bool AriProgIterator::start() const {
+template <class T>
+bool AriProgIterator<T>::start() const {
     return this->currentIndex < 1;
 }
 
-void AriProgIterator::next() {
+template <class T>
+void AriProgIterator<T>::next() {
     if ( this->end() ) {
         return;
     }
@@ -40,7 +46,8 @@ void AriProgIterator::next() {
     }
 }
 
-void AriProgIterator::prev() {
+template <class T>
+void AriProgIterator<T>::prev() {
     if ( this->start() ) {
         return;
     }
@@ -58,7 +65,8 @@ void AriProgIterator::prev() {
     }
 }
 
-void AriProgIterator::move(int index) {
+template <class T>
+void AriProgIterator<T>::move(int index) {
     if ( index > this->size ) {
         this->currentIndex = size;
         this->currentValue = this->first + (this->currentIndex - 1) * this->step;
@@ -75,32 +83,38 @@ void AriProgIterator::move(int index) {
     this->currentValue = this->first + (this->currentIndex - 1) * this->step;
 }
 
-void AriProgIterator::reset() {
+template <class T>
+void AriProgIterator<T>::reset() {
     this->currentIndex = 1;
     this->currentValue = this->first;
 }
 
-void AriProgIterator::operator++() {
+template <class T>
+void AriProgIterator<T>::operator++() {
     this->next();
 }
 
-void AriProgIterator::operator++(int) {
+template <class T>
+void AriProgIterator<T>::operator++(int) {
     this->next();
 }
 
-void AriProgIterator::operator--() {
+template <class T>
+void AriProgIterator<T>::operator--() {
     this->prev();
 }
 
-void AriProgIterator::operator--(int) {
+template <class T>
+void AriProgIterator<T>::operator--(int) {
     this->prev();
 }
-
-int AriProgIterator::operator*() const {
+template <class T>
+T AriProgIterator<T>::operator*() const {
     return this->value();
 }
 
-int AriProgIterator::operator[](int index) const {
+template <class T>
+T AriProgIterator<T>::operator[](int index) const {
     if ( index > this->size ) {
         index =  this->size;
     }
@@ -111,3 +125,7 @@ int AriProgIterator::operator[](int index) const {
     
     return this->step * (index - 1) + this->first;;
 }
+
+template class AriProgIterator<int>;
+template class AriProgIterator<float>;
+template class AriProgIterator<double>;

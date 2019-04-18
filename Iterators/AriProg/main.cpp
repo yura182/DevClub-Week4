@@ -3,8 +3,8 @@
 
 int main() {
     //AriProgIterator it(10, 2, 10);
-    AriProgIterator *itPtr = new AriProgIterator(1, 1, 10);
-    AriProgIterator &it = *itPtr;
+    AriProgIterator<float> *itPtr = new AriProgIterator<float>(1.5, 1.5, 10);
+    AriProgIterator<float> &it = *itPtr;
     
     
     for ( ; !it.end(); it.next() ) {
