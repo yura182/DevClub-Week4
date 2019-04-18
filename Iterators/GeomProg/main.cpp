@@ -16,6 +16,8 @@ int main() {
     
     std::cout << it.value() << std::endl;
     std::cout << it[20] << std::endl;
+    it++;
+    std::cout << it.value() << std::endl;
     
     return 0;
 }
