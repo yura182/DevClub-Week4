@@ -9,6 +9,15 @@ int main() {
     }
     std::cout << std::endl;
     
+    for ( ; !it.start(); it.prev() ) {
+        std::cout << it.value() << " ";
+    }
+    std::cout << std::endl;
+    
+    std::cout << it.value() << std::endl;
+    std::cout << it[20] << std::endl;
+    it++;
+    std::cout << it.value() << std::endl;
     
     return 0;
 }
