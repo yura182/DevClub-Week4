@@ -12,7 +12,7 @@ class GeomProgIterator {
         T currentValue;
         int currentIndex;
     public:
-        GeomProgIterator(T first, T ratio, int size);
+        GeomProgIterator(T first=1, T ratio=2, int size=10);
         ~GeomProgIterator();
         
         T value() const;
