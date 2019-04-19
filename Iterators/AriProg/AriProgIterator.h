@@ -10,7 +10,7 @@ class AriProgIterator {
         T currentValue;
         int currentIndex;
     public:
-        AriProgIterator(T first, T step, int size);
+        AriProgIterator(T first=1, T step=2, int size=10);
         ~AriProgIterator();
         
         T value() const;
