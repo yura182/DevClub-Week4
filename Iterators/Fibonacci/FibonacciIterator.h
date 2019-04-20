@@ -1,1 +1,6 @@
-FibonacciIterator
+#ifndef FIBONACCIITERATOR_H
+#define FIBONACCIITERATOR_H
+
+
+
+#endif // FIBONACCIITERATOR_H
