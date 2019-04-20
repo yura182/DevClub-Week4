@@ -10,7 +10,7 @@ class FibonacciIterator {
         int prevValue;
         int fibonacci(int number);
     public:
-        FibonacciIterator(int size, int firstIndex);
+        FibonacciIterator(int size=10, int firstIndex=0);
         ~FibonacciIterator();
         
         int value() const;
@@ -26,7 +26,7 @@ class FibonacciIterator {
         void operator--();
         void operator--(int);
         int operator*();
-        int operator[]();
+        int operator[](int index);
 };
 
 #endif // FIBONACCIITERATOR_H
