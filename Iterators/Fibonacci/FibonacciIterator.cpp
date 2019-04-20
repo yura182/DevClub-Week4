@@ -30,7 +30,7 @@ bool FibonacciIterator::start() const {
 }
 
 bool FibonacciIterator::end() const {
-    return this->currentIndex > this->firstIndex + this->size;
+    return this->currentIndex >= this->firstIndex + this->size;
 }
 
 void FibonacciIterator::next() {
@@ -74,10 +74,10 @@ void FibonacciIterator::prev() {
 }
 
 void FibonacciIterator::move(int index) {
-    if ( index < this->first ) {
-        index = this->first;
-    } else if ( index > this->first + this->size ) {
-        index = this->first + this->size;
+    if ( index < this->firstIndex ) {
+        index = this->firstIndex;
+    } else if ( index > this->firstIndex + this->size ) {
+        index = this->firstIndex + this->size;
     }
     
     this->currentIndex = index;
@@ -86,7 +86,7 @@ void FibonacciIterator::move(int index) {
 }
 
 void FibonacciIterator::reset() {
-    this->currentIndex = this->first;
+    this->currentIndex = this->firstIndex;
     this->currentValue = fibonacci(this->currentIndex);
     this->prevValue = fibonacci(this->currentIndex-1);
 }
