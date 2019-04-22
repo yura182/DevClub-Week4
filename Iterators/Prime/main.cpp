@@ -2,7 +2,7 @@
 #include "PrimeIterator.h"
 
 int main() {
-    PrimeIterator it(20);
+    PrimeIterator it(10);
     
     for ( ; !it.end(); it.next() ) {
         std::cout << it.value() << " ";
