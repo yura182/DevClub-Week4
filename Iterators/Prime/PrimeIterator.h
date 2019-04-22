@@ -6,13 +6,12 @@ class OutOfMemoryException {};
 class PrimeIterator {
     private:
         int size;
-        int initSize;
         int currentIndex;
         int *primeNumbers;
-        bool isPrime(int n);
-        void fillArray(int *array, int start, int end, int size);
+        int nextNumber;
+        bool isPrime(int *numbers, int n) const;
     public:
-        PrimeIterator(int size=10);
+        PrimeIterator(int size=5);
         ~PrimeIterator();
         
         int value() const;
@@ -20,7 +19,6 @@ class PrimeIterator {
         bool end() const;
         void next();
         void prev();
-        void move();
         void reset();
         
         void operator++();
@@ -28,7 +26,6 @@ class PrimeIterator {
         void operator--();
         void operator--(int);
         int operator*();
-        int operator[]();
 };
 
 #endif // PRIMEITERATOR_H
