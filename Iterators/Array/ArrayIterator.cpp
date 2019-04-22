@@ -91,7 +91,7 @@ void ArrayIterator<T>::operator--(int) {
 
 template <class T>
 T ArrayIterator<T>::operator*() {
-    return this->array[this->currentIndex];
+    return this->value();
 }
 
 template <class T>
