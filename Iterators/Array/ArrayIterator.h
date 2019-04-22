@@ -6,7 +6,6 @@ class ArrayIterator {
     private:
         int size;
         int currentIndex;
-        T currentValue;
         T *array;
     public:
         ArrayIterator(T *array, int size);
@@ -17,7 +16,7 @@ class ArrayIterator {
         bool end() const;
         void next();
         void prev();
-        void move();
+        void move(int index);
         void reset();
         
         void operator++();
