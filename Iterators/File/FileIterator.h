@@ -6,25 +6,21 @@
 template <class T>
 class FileIterator {
     private:
-        ifstream in;
-        std::string fileName;
+        std::ifstream in;
         T data;
+        bool endOfFile;
     public:
         FileIterator(std::string fileName);
         ~FileIterator();
         
         T value() const;
-        bool start() const;
         bool end() const;
         void next();
-        void prev();
         void reset();
         
         void operator++();
         void operator++(int);
-        void operator--();
-        void operator--(int);
-        void operator*();
+        T operator*();
 };
 
 #endif // FILEITERATOR_H
