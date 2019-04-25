@@ -25,7 +25,7 @@ int main() {
     it.reset();
     std::cout << *it << std::endl;
     
-    std::cout << it[9] << std::endl;
+    std::cout << it[8] << std::endl;
     
     return 0;
 }
