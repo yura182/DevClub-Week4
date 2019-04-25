@@ -1,5 +1,13 @@
 #ifndef COUNTABLE_H
 #define COUNTABLE_H
 
+class Countable {
+    private:
+        static int total;
+    public:
+        Countable();
+        ~Countable();
+        static int getTotal();
+};
 
-#endif // COUN
+#endif // COUNTAVLE_H
