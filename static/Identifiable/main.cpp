@@ -19,11 +19,11 @@ int main() {
     std::cout << Identifiable::getTotal() << std::endl;
     
     *e = *d;
+    delete(a);
     
     std::cout << e->getId() << std::endl;
     std::cout << Identifiable::getTotal() << std::endl;
     
-    delete(a);
     delete(b);
     delete(d);
     
