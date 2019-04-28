@@ -11,11 +11,17 @@ class Passport {
         std::string number;
         std::string name;
         std::string surname;
-        Date dateOfBirth;
+        Date *dateOfBirth;
         
         static char firstLetter;
         static char secondLetter;
         static int nextNumber;
+        
+        const std::string newSeries();
+        const std::string newSeries(const std::string series);
+        
+        const std::string newNumber();
+        const std::string newNumber(int number);
     public:
         Passport(const std::string name, const std::string surname, Date& date);
         Passport(const std::string name, const std::string surname, Date& date,
