@@ -1,6 +1,6 @@
 #include "Mohican.h"
 
-Mohican::Mohican(std::string name) {
+Mohican::Mohican(std::string& name) {
     this->name = name;
     this->prev = last;
     this->next = NULL;
