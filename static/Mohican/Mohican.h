@@ -11,7 +11,7 @@ class Mohican {
         static Mohican *last;
         static int total;
     public:
-        Mohican(std::string& name);
+        Mohican(const std::string& name);
         Mohican(const Mohican& copy);
         ~Mohican();
         
