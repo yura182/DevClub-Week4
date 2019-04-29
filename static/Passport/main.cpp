@@ -24,5 +24,14 @@ int main() {
     Passport *passport5 = new Passport("Zhan", "Tirnak", Date(5, 6, 1990));
     std::cout << "\n" << *passport5 << std::endl;
     
+    delete(date);
+    delete(date1);
+    delete(passport);
+    delete(passport1);
+    delete(passport2);
+    delete(passport3);
+    delete(passport4);
+    delete(passport5);
+    
     return 0;
 }
