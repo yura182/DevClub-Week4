@@ -26,8 +26,8 @@ class Passport {
         
         const std::string newNumber();
     public:
-        Passport(const std::string& name, const std::string& surname, Date& date);
-        Passport(const std::string& name, const std::string& surname, Date& date,
+        Passport(const std::string& name, const std::string& surname, const Date& date);
+        Passport(const std::string& name, const std::string& surname, const Date& date,
                  const std::string& series, int number=0);
         ~Passport();
         
