@@ -31,7 +31,7 @@ const std::string& Passport::getNumber() const {
 }
 
 const std::string& Passport::getName() const {
-    return this->number;
+    return this->name;
 }
 
 const std::string& Passport::getSurname() const {
@@ -62,11 +62,14 @@ const std::string Passport::newNumber() {
     nextNumber += 1;
     
     if ( nextNumber > 999999 ) {
-        nextNumber = 0;
+        nextNumber = 1;
         secondLetter += 1;
         if ( secondLetter > 'Z' ) {
             secondLetter = 'A';
             firstLetter += 1;
+            if ( firstLetter > 'Z' ) {
+                throw SerialOutOfRange();
+            }
         }
     }
     
@@ -111,7 +114,7 @@ void Passport::setSeries(const std::string& series, int number) {
 
 std::ostream& operator<<(std::ostream& out, const Passport& passport) {
     out << "Serial number: " << passport.getSeries() << passport.getNumber() << "\n";
-    out << "Name: " << passport.getName() << " Surname: " << passport.getSurname() << "\n";
+    out << "Name: " << passport.getName() << "\nSurname: " << passport.getSurname() << "\n";
     out << "Date of Birth: " << passport.getDate() << std::endl;
     
     return out;

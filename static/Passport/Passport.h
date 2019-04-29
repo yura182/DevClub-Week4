@@ -7,6 +7,7 @@
 
 class InvalidSeries {};
 class InvalidNumber {};
+class SerialOutOfRange {};
 
 class Passport {
     private:
@@ -36,7 +37,7 @@ class Passport {
         const std::string& getSurname() const;
         const Date& getDate() const;
         
-        static void setSeries(const std::string& series, int number=0);
+        static void setSeries(const std::string& series, int number=1);
 };
 
 std::ostream& operator<<(std::ostream& out, const Passport& passport);
