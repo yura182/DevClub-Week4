@@ -1,5 +1,8 @@
 #include "Id.h"
 
+class Category;
+class Item;
+
 template <class T>
 Id<T>::Id() {
     id =  nextId;
@@ -15,4 +18,7 @@ int Id<T>::getId() const {
 }
 
 template <class T> 
-int Id<T>::nextId = 0;
+int Id<T>::nextId = 1;
+
+template class Id<Category>;
+template class Id<Item>;
