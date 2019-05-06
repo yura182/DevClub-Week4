@@ -2,6 +2,9 @@
 
 class Category;
 class Item;
+class Order;
+class Customer;
+
 
 template <class T>
 Id<T>::Id() {
@@ -22,3 +25,5 @@ int Id<T>::nextId = 1;
 
 template class Id<Category>;
 template class Id<Item>;
+template class Id<Order>;
+template class Id<Customer>;

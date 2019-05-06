@@ -18,6 +18,11 @@ Category* Item::getCategory() const {
     return this->category;
 }
 
+
+const std::set<Order*>& Item::getOrders() const {
+    return this->orders;
+}
+
 void Item::setCategory(Category* category) {
     if ( this->category == category ) {
         return;
@@ -28,9 +33,17 @@ void Item::setCategory(Category* category) {
     this->category->addItem(this);
 }
 
+void Item::addOrder(Order* order) {
+    this->orders.insert(order);
+}
+
+void Item::removeOrder(Order* order) {
+    this->orders.erase(order);
+}
+
 std::set<Item*> Item::allItems;
 
-std::set<Item*>& Item::getAllItems() {
+const std::set<Item*>& Item::getAllItems() {
     return allItems;
 }
 

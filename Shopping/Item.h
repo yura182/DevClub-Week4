@@ -6,14 +6,17 @@
 #include <iostream>
 #include "Id.h"
 #include "Category.h"
+#include "Order.h"
 
 class Category;
+class Order;
+
 
 class Item : public Id<Item> {
     private:
         std::string itemName;
         Category* category;
-        // std::set<Order*> orders;
+        std::set<Order*> orders;
         
         static std::set<Item*> allItems;
     public:
@@ -22,9 +25,13 @@ class Item : public Id<Item> {
         
         const std::string& getTitle() const;
         Category* getCategory() const;
-        void setCategory(Category* category);
+        const std::set<Order*>& getOrders() const;
         
-        static std::set<Item*>& getAllItems();
+        void setCategory(Category* category);
+        void addOrder(Order* order);
+        void removeOrder(Order* order);
+        
+        static const std::set<Item*>& getAllItems();
 };
 
 std::ostream& operator<<(std::ostream& out, const std::set<Item*>& lst);

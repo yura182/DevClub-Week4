@@ -2,6 +2,7 @@
 #include "Id.h"
 #include "Category.h"
 #include "Item.h"
+#include "Customer.h"
 
 // #define SEPARATOR std::cout << "--------------------" << std::endl;
 
@@ -18,11 +19,29 @@ int main() {
         
     std::cout << Item::getAllItems() << std::endl;
     
-    iphone->setCategory(tv);
-    nokia->setCategory(tv);
+    Customer *ivan = new Customer("Ivan");
+    Customer *dima = new Customer("Dima");
     
-    std::cout << Item::getAllItems() << std::endl;
-    std::cout << tv->getItems() << std::endl;
-
+    Order *gift = new Order(iphone, ivan);
+    Order *shopList = new Order(nokia, dima);
+    gift->addItem(samsung);
+    
+    std::cout << ivan << std::endl;
+    std::cout << dima << std::endl;
+    
+    // std::cout << Order::getAllOrders() << std::endl;
+    // std::cout << Customer::getAllCustomers() << std::endl;
+    
+    delete gift;
+    delete shopList;
+    delete ivan;
+    delete dima;
+    delete samsung;
+    delete lg;
+    delete nokia;
+    delete iphone;
+    delete mobile;
+    delete tv;
+    
     return 0;
 }

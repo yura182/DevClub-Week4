@@ -21,12 +21,12 @@ class Category : public Id<Category> {
         ~Category();
         
         const std::string getTitle() const;
-        std::set<Item*>& getItems();
+        const std::set<Item*>& getItems() const;
         
         void addItem(Item* item);
         void removeItem(Item* item);
         
-        static std::set<Category*>& getCategories();
+        static const std::set<Category*>& getCategories();
 };
 
 std::ostream& operator<<(std::ostream& out, const std::set<Category*>& lst);

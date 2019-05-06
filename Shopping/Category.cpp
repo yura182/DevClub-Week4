@@ -18,11 +18,11 @@ const std::string Category::getTitle() const {
     return this->title;
 }
 
-std::set<Item*>& Category::getItems() {
+const std::set<Item*>& Category::getItems() const{
     return items;
 }
 
-std::set<Category*>& Category::getCategories() {
+const std::set<Category*>& Category::getCategories() {
     return categories;
 }
 
