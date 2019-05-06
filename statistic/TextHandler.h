@@ -19,6 +19,7 @@ class TextHandler {
         std::set<std::string>* words;
         std::map<std::string, int>* wordsStatistics;
         long long quantity;
+        long long wordsQuantity;
 
         void insert(char symbol, std::set<char>* lst);
         void insert(char symbol, std::map<char, int>* lst);
@@ -42,6 +43,7 @@ class TextHandler {
         const std::set<std::string>& getWords() const;
         const std::map<std::string, int>& getWordsStatistics() const;
         long long getQuantity() const;
+        long long getWordsQuantity() const;
 
         void parseText();
 };

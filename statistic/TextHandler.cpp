@@ -10,6 +10,7 @@ TextHandler::TextHandler(const char* filename) : filename(filename) {
     words = new std::set<std::string>();
     wordsStatistics = new std::map<std::string, int>();
     quantity = 0;
+    wordsQuantity = 0;
 }
 
 TextHandler::~TextHandler() {
@@ -57,6 +58,10 @@ const std::map<std::string, int>& TextHandler::getWordsStatistics() const {
 
 long long TextHandler::getQuantity() const {
     return quantity;
+}
+
+long long TextHandler::getWordsQuantity() const {
+    return wordsQuantity;
 }
 
 void TextHandler::insert(char symbol, std::set<char>* lst) {
@@ -158,6 +163,7 @@ void TextHandler::parseText() {
             insert(word, words);
             insert(word, wordsStatistics);
             word.clear();
+            wordsQuantity += 1;
         }
     }
     file.close();
@@ -181,6 +187,7 @@ std::ostream& operator<<(std::ostream& out, const TextHandler& handler) {
     out << handler.getSpecialSymbolsStatistics() << std::endl;
     
     out << "Words statistic" << std::endl;
+    out << "Words found: " << handler.getWordsQuantity() << std::endl;
     out << "Unique: " << handler.getWords() << std::endl;
     out << "Matches in text: " << std::endl;
     out << handler.getWordsStatistics() << std::endl;
