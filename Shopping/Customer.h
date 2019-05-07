@@ -9,6 +9,9 @@
 
 class Order;
 
+class EmptyOrders {};
+class EmptyCustomerList {};
+
 class Customer : public Id<Customer> {
     private:
         std::string name;

@@ -15,6 +15,8 @@ Order::~Order() {
     }
     
     allOrders.erase(this);
+    
+    std::cout << "*** Order with id " << this->getId() << " deleted ***" << std::endl;
 }
 
 Customer* Order::getCustomer() const {
@@ -34,6 +36,9 @@ void Order::removeItem(Item* item) {
 }
 
 const std::set<Order*>& Order::getAllOrders() {
+    if ( allOrders.empty() ) {
+        throw EmptyOrderList();
+    }
     return allOrders;
 }
 

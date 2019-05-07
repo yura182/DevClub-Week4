@@ -11,6 +11,7 @@
 class Category;
 class Order;
 
+class EmptyOrderList {};
 
 class Item : public Id<Item> {
     private:

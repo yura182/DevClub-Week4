@@ -9,13 +9,15 @@
 
 class Item;
 
+class EmptyItemList {};
+class EmptyCategoryList {};
+
 class Category : public Id<Category> {
     private:
         std::string title;
         std::set<Item*> items;
         
         static std::set<Category*> categories;
-        static Category defaultCategory; 
     public:
         Category(const std::string& title);
         ~Category();

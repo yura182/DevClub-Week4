@@ -8,10 +8,11 @@ Category::~Category() {
     std::set<Item*>::iterator it = items.begin();
     
     for ( ; it != items.end(); it++ ) {
-        (*it)->setCategory(&defaultCategory);
+        delete *it;
     }
     
     categories.erase(this);
+    std::cout << "*** Category " << this->getTitle() << " deleted ***\n" << std::endl;
 }
 
 const std::string Category::getTitle() const {
@@ -19,10 +20,16 @@ const std::string Category::getTitle() const {
 }
 
 const std::set<Item*>& Category::getItems() const{
+    if ( this->items.empty() ) {
+        throw EmptyItemList();
+    }
     return items;
 }
 
 const std::set<Category*>& Category::getCategories() {
+    if ( categories.empty() ) {
+        throw EmptyCategoryList();
+    }
     return categories;
 }
 
@@ -35,10 +42,6 @@ void Category::removeItem(Item* item) {
 }
 
 std::set<Category*> Category::categories;
-
-
-Category Category::defaultCategory("Default");
-
 
 std::ostream& operator<<(std::ostream& out, const std::set<Category*>& lst) {
     std::set<Category*>::iterator it = lst.begin();

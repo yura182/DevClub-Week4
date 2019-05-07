@@ -6,8 +6,8 @@ Item::Item(const std::string& itemName, Category* category) : itemName(itemName)
 }
 
 Item::~Item() {
-    this->category->removeItem(this);
     allItems.erase(this);
+    std::cout << "*** Item " << this->getTitle() << " deleted ***" << std::endl;
 }
 
 const std::string& Item::getTitle() const {
@@ -20,6 +20,9 @@ Category* Item::getCategory() const {
 
 
 const std::set<Order*>& Item::getOrders() const {
+    if ( orders.empty() ) {
+        throw EmptyOrderList();
+    }
     return this->orders;
 }
 
@@ -44,6 +47,9 @@ void Item::removeOrder(Order* order) {
 std::set<Item*> Item::allItems;
 
 const std::set<Item*>& Item::getAllItems() {
+    if ( allItems.empty() ) {
+        throw EmptyItemList();
+    }
     return allItems;
 }
 

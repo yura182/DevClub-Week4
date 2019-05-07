@@ -8,7 +8,7 @@ class Id {
         static int nextId;
     public:
         Id();
-        ~Id();
+        virtual ~Id();
         
         int getId() const;
 };
