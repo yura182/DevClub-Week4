@@ -5,7 +5,14 @@ Customer::Customer(const std::string& name) : name(name) {
 }
 
 Customer::~Customer() {
+    std::set<Order*>::iterator it = orders.begin();
+    
+    for ( ; it != orders.end(); it++ ) {
+        delete *it;
+    }
+    
     allCustomers.erase(this);
+    std::cout << "*** Customer " << this->getName() << " deleted ***\n" << std::endl;
 }
 
 const std::string& Customer::getName() const {
@@ -13,6 +20,9 @@ const std::string& Customer::getName() const {
 }
 
 const std::set<Order*>& Customer::getOrders() const {
+    if ( this->orders.empty() ) {
+        throw EmptyOrders();
+    }
     return this->orders;
 }
 
@@ -25,6 +35,9 @@ void Customer::removeOrder(Order* order) {
 }
 
 const std::set<Customer*>& Customer::getAllCustomers() {
+    if ( allCustomers.empty() ) {
+        throw EmptyCustomerList();
+    }
     return allCustomers;
 }
 
