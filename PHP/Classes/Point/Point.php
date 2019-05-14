@@ -15,11 +15,18 @@
         }
         
         public function __get($name) {
-            return $this->$name;
+            if ( property_exists($this, $name) ) {
+                return $this->$name;
+            }
+            throw new Exception("Atribute error: atribute $name not found");
         }
         
         public function __set($name, $value) {
-            $this->$name = $this->validate($value);
+            if ( property_exists($this, $name) ) {
+                $this->$name = $this->validate($value);
+            } else {
+                throw new Exception("Atribute error: atribute $name not found");
+            }
         }
         
         public function distance(Point $other) {
