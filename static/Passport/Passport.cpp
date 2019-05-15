@@ -79,8 +79,10 @@ const std::string Passport::newNumber() {
 const std::string& Passport::newSeries(const std::string& series, int number) {
     if ( series[0] < firstLetter ) {
         throw InvalidSeries();
-    } else if ( series[1] < secondLetter ) {
-        throw InvalidSeries();
+    } else if ( series[0] == firstLetter ) {
+        if ( series[1] < secondLetter ) {
+            throw InvalidSeries();
+        }
     }
     
     firstLetter = series[0];
