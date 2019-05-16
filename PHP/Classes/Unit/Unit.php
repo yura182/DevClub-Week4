@@ -42,6 +42,7 @@
             if ( property_exists($this, $name) ) {
                 return $this->$name;
             }
+            throw new Exception("Attribute error: property $name not found");
         }
         
         public function addHitPoints($hp) {
