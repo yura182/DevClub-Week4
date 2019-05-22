@@ -1,9 +1,10 @@
 #include "Unit.h"
 
-Unit::Unit(const std::string& name, int hp, int dmg) {
+Unit::Unit(const std::string& name, State *state, BaseAttack *bAttack, UnitType type) {
     this->name = name;
-    this->state = new State(hp, dmg);
-    this->baseAttack = new BaseAttack();
+    this->state = state;
+    this->baseAttack = bAttack;
+    this->type = type;
     
     debugPrint("Unit created", this->name);
 }
@@ -37,6 +38,11 @@ int Unit::getDamage() const {
     return this->state->getDamage();
 }
 
+
+UnitType Unit::getType() const {
+    return this->type;
+}
+
 void Unit::addHitPoints(int hp) {
     if ( !isAlive() ) {
         std::cout << "Unit " << this->name << " is dead" << std::endl;
@@ -68,7 +74,25 @@ void Unit::counterAttack(Unit& enemy) {
 }
 
 std::ostream& operator<<(std::ostream& out, const Unit& unit) {
-    out << unit.getName() << " [";
+    out << "\033[30m" << unit.getName() << " " << unit.getType() << " [";
     out << unit.getState() << "]";
+    return out;
+}
+
+std::ostream& operator<<(std::ostream& out, const UnitType& type) {
+    switch (type) {
+        case UnitType::SOLDIER:
+            out << "Soldier";
+            break;
+        case UnitType::ROGUE:
+            out << "Rogue";
+            break;
+        case UnitType::BERSERKER:
+            out << "Berserker";
+            break;
+        default:
+            out << "Unknown";
+            break;
+    }
     return out;
 }
