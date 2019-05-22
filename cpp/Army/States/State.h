@@ -2,7 +2,7 @@
 #define STATE_H
 
 #include <iostream>
-#include "../Debug.h"
+#include "../Debug/Debug.h"
 
 class State {
     private:

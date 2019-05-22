@@ -3,21 +3,29 @@
 
 #include <iostream>
 #include "../Exceptions.h"
-#include "../Debug.h"
+#include "../Debug/Debug.h"
 #include "../States/State.h"
 #include "../Attack/BaseAttack.h"
 
 class State;
 class BaseAttack;
 
+enum class UnitType {
+    SOLDIER,
+    ROGUE,
+    BERSERKER
+};
+
 class Unit {
     protected:
         std::string name;
         State *state;
         BaseAttack *baseAttack;
+        UnitType type;
+        
+        Unit(const std::string& name, State *state, BaseAttack *bAttack, UnitType type);
     public:
-        Unit(const std::string& name, int hp, int dmg);
-        ~Unit();
+        virtual ~Unit();
         
         bool isAlive();
         void esureIsAlive();
@@ -26,6 +34,7 @@ class Unit {
         const State& getState() const;
         
         int getDamage() const;
+        UnitType getType() const;
         
         void addHitPoints(int hp);
         void takeDamage(int dmg);
@@ -35,5 +44,6 @@ class Unit {
 };
 
 std::ostream& operator<<(std::ostream& out, const Unit& unit);
+std::ostream& operator<<(std::ostream& out, const UnitType& type);
 
 #endif // UNIT_H
