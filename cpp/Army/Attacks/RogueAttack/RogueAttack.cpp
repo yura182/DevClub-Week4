@@ -10,5 +10,5 @@ RogueAttack::~RogueAttack() {
 void RogueAttack::attack(Unit& attacker, Unit& victim) {
     victim.takeDamage(attacker.getDamage());
     
-    std::cout << "\033[31m" << attacker.getName() << " attacks " << victim.getName() << std::endl;
+    std::cout << "\033[31m" << attacker.getName() << " attacked " << victim.getName() << std::endl;
 }

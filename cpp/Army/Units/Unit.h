@@ -5,7 +5,7 @@
 #include "../Exceptions.h"
 #include "../Debug/Debug.h"
 #include "../States/State.h"
-#include "../Attack/BaseAttack.h"
+#include "../Attacks/BaseAttack.h"
 
 class State;
 class BaseAttack;
@@ -13,13 +13,19 @@ class BaseAttack;
 enum class UnitType {
     SOLDIER,
     ROGUE,
-    BERSERKER
+    BERSERKER,
+    VAMPIRE,
+    WEREWOLF,
+    WOLF,
+    
+    WIZARD
 };
 
 class Unit {
     protected:
         std::string name;
         State *state;
+        State *altState;
         BaseAttack *baseAttack;
         UnitType type;
         
@@ -41,6 +47,8 @@ class Unit {
         
         void attack(Unit& enemy);
         void counterAttack(Unit& enemy);
+        
+        virtual void useAbility();
 };
 
 std::ostream& operator<<(std::ostream& out, const Unit& unit);
