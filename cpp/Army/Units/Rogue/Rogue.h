@@ -4,7 +4,7 @@
 #include "../../Debug/Debug.h"
 #include "../Unit.h"
 #include "../../States/State.h"
-#include "../../Attack/RogueAttack/RogueAttack.h"
+#include "../../Attacks/RogueAttack/RogueAttack.h"
 
 class Rogue : public Unit {
     public:

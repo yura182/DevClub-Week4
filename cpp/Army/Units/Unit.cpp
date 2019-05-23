@@ -5,6 +5,7 @@ Unit::Unit(const std::string& name, State *state, BaseAttack *bAttack, UnitType 
     this->state = state;
     this->baseAttack = bAttack;
     this->type = type;
+    this->altState = NULL;
     
     debugPrint("Unit created", this->name);
 }
@@ -12,6 +13,10 @@ Unit::Unit(const std::string& name, State *state, BaseAttack *bAttack, UnitType 
 Unit::~Unit() {
     delete this->state;
     delete this->baseAttack;
+    
+    if ( this->altState ) {
+        delete this->altState;
+    }
     
     debugPrint("Unit destroyed", this->name);
 }
@@ -73,6 +78,8 @@ void Unit::counterAttack(Unit& enemy) {
     this->baseAttack->counterAttack(*this, enemy);
 }
 
+void Unit::useAbility() {}
+
 std::ostream& operator<<(std::ostream& out, const Unit& unit) {
     out << "\033[30m" << unit.getName() << " " << unit.getType() << " [";
     out << unit.getState() << "]";
@@ -89,6 +96,18 @@ std::ostream& operator<<(std::ostream& out, const UnitType& type) {
             break;
         case UnitType::BERSERKER:
             out << "Berserker";
+            break;
+        case UnitType::VAMPIRE:
+            out << "Vampire";
+            break;
+        case UnitType::WEREWOLF:
+            out << "Werewolf";
+            break;
+        case UnitType::WOLF:
+            out << "Wolf";
+            break;
+        case UnitType::WIZARD:
+            out << "Wizard";
             break;
         default:
             out << "Unknown";
