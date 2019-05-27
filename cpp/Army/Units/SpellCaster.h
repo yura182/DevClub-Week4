@@ -1,7 +1,7 @@
 #ifndef SPELLCASTER_H
 #define SPELLCASTER_H
 
-#include "../Debug/Debug.h"
+#include "../Helpers/Debug.h"
 #include "Unit.h"
 #include "../States/SpellCasterState.h"
 

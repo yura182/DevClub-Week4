@@ -9,12 +9,12 @@
 
 int main() {
     std::cout << "\x1B" << "[2J" << "\x1B" << "[3J" << "\033[1;1H";
-    Unit *sol = new Soldier("Vasya", 100, 30);
-    Unit *rog = new Rogue("Grisha", 80, 40);
-    Unit *ber = new Berserker("Tolya", 100, 20);
-    Unit *vam = new Vampire("Gena", 110, 30);
-    Unit *wer = new Werewolf("Kolya", 90, 15);
-    SpellCaster *wiz = new Wizard("Georgy", 50, 10, 50);
+    Unit *sol = new Soldier("Vasya");
+    Unit *rog = new Rogue("Grisha");
+    Unit *ber = new Berserker("Tolya");
+    Unit *vam = new Vampire("Gena");
+    Unit *wer = new Werewolf("Kolya");
+    SpellCaster *wiz = new Wizard("Georgy", 50);
     
     std::cout << *sol << std::endl;
     std::cout << *rog << std::endl;

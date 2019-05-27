@@ -3,13 +3,13 @@
 
 #define TRANSFORM_COEF 2
 
-#include "../../Debug/Debug.h"
+#include "../../Helpers/Debug.h"
 #include "../Unit.h"
 #include "../../States/State.h"
 
 class Werewolf : public Unit {
     public:
-        Werewolf(const std::string& name, int hp, int dmg);
+        Werewolf(const std::string& name, int hp=intVal(Health::WEREWOLF), int dmg=intVal(Damage::WEREWOLF));
         ~Werewolf();
         
         void useAbility();

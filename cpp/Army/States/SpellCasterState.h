@@ -1,7 +1,7 @@
 #ifndef SPELLCASTERSTATE_H
 #define SPELLCASTERSTATE_H
 
-#include "../Debug/Debug.h"
+#include "../Helpers/Debug.h"
 
 class SpellCasterState {
     private:

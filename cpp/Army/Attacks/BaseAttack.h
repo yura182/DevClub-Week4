@@ -1,7 +1,7 @@
 #ifndef ATTACK_H
 #define ATTACK_H
 
-#include "../Debug/Debug.h"
+#include "../Helpers/Debug.h"
 #include "../Units/Unit.h"
 
 class Unit;

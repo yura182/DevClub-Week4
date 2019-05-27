@@ -2,10 +2,11 @@
 #define UNIT_H
 
 #include <iostream>
-#include "../Exceptions.h"
-#include "../Debug/Debug.h"
+#include "../Helpers/Exceptions.h"
+#include "../Helpers/Debug.h"
 #include "../States/State.h"
 #include "../Attacks/BaseAttack.h"
+#include "../Helpers/Default.h"
 
 class State;
 class BaseAttack;

@@ -3,7 +3,7 @@
 
 #define PART_OF_HP 0.6
 
-#include "../../Debug/Debug.h"
+#include "../../Helpers/Debug.h"
 #include "../../Units/Unit.h"
 #include "../BaseAttack.h"
 
