@@ -1,13 +1,13 @@
 #ifndef BERSERKER_H
 #define BERSERKER_H
 
-#include "../../Debug/Debug.h"
+#include "../../Helpers/Debug.h"
 #include "../Unit.h"
 #include "../../States/State.h"
 
 class Berserker : public Unit {
     public:
-        Berserker(const std::string& name, int hp, int dmg);
+        Berserker(const std::string&, int hp=intVal(Health::BERSERKER), int dmg=intVal(Damage::BERSERKER));
         ~Berserker();
 };
 

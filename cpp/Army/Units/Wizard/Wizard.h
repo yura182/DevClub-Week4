@@ -1,13 +1,13 @@
 #ifndef WIZARD_H
 #define WIZARD_H
 
-#include "../../Debug/Debug.h"
+#include "../../Helpers/Debug.h"
 #include "../SpellCaster.h"
 #include "../../States/State.h"
 
 class Wizard : public SpellCaster {
     public:
-        Wizard(const std::string& name, int hp, int dmg, int mana);
+        Wizard(const std::string& name, int mana, int hp=intVal(Health::WIZARD), int dmg=intVal(Damage::WIZARD));
         ~Wizard();
 };
 

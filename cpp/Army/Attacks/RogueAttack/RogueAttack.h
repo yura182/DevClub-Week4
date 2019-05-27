@@ -1,7 +1,7 @@
 #ifndef ROGUEATTACK_H
 #define ROGUEATTACK_H
 
-#include "../../Debug/Debug.h"
+#include "../../Helpers/Debug.h"
 #include "../../Units/Unit.h"
 #include "../BaseAttack.h"
 
