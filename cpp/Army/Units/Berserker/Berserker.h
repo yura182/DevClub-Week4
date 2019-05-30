@@ -9,6 +9,8 @@ class Berserker : public Unit {
     public:
         Berserker(const std::string&, int hp=intVal(Health::BERSERKER), int dmg=intVal(Damage::BERSERKER));
         ~Berserker();
+        
+        void takeMagicDamage(int dmg);
 };
 
 #endif // BERSERKER_H

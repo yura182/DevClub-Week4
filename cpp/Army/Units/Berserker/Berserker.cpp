@@ -10,3 +10,6 @@ Berserker::~Berserker() {
     debugPrint("Berserker destroyed", this->name);
 }
 
+void Berserker::takeMagicDamage(int dmg) {
+    std::cout << this->getName() << " " << this->getType() << " says - \"Ha-Ha\"" << std::endl;
+}

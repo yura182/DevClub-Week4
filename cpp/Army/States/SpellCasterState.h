@@ -15,6 +15,7 @@ class SpellCasterState {
         int getManaLimit() const;
         
         void addMana(int mana);
+        void reduceMana(int mana);
 };
 
 std::ostream& operator<<(std::ostream& out, const SpellCasterState& scState);

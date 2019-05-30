@@ -11,7 +11,7 @@ class State {
         int hitPointsLimit;
     public:
         State(int hp, int dmg);
-        ~State();
+        virtual ~State();
         
         int getDamage() const;
         int getHitPoints() const;
@@ -19,6 +19,7 @@ class State {
         
         void addHitPoints(int hp);
         void takeDamage(int hp);
+        virtual void takeMagicDamage(int dmg);
 };
 
 std::ostream& operator<<(std::ostream& out, const State& state);

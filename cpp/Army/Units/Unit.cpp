@@ -66,6 +66,15 @@ void Unit::takeDamage(int dmg) {
     this->state->takeDamage(dmg);
 }
 
+void Unit::takeMagicDamage(int dmg) {
+    if ( !isAlive() ) {
+        std::cout << "Unit " << this->name << " is dead" << std::endl;
+        return;
+    }
+    
+    this->state->takeMagicDamage(dmg);
+}
+
 void Unit::attack(Unit& enemy) {
     if ( !isAlive() ) {
         std::cout << "Unit " << this->name << " is dead and can't attack" << std::endl;

@@ -28,6 +28,10 @@ void SpellCasterState::addMana(int mana) {
     this->mana += mana;
 }
 
+void SpellCasterState::reduceMana(int mana) {
+    this->mana -= mana;
+}
+
 std::ostream& operator<<(std::ostream& out, const SpellCasterState& sCaster) {
     out << " mana:" << sCaster.getMana();
     return out;

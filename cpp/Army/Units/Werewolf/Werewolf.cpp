@@ -24,7 +24,7 @@ void Werewolf::transform() {
         int newDmg = this->state->getDamage() * TRANSFORM_COEF;
         
         this->altState = this->state;
-        this->state = new State(newHp, newDmg);
+        this->state = new WolfState(newHp, newDmg);
         this->type = UnitType::WOLF;
         
         debugPrint("Werewolf transformed", this->name);
