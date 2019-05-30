@@ -40,6 +40,12 @@ void State::takeDamage(int dmg) {
     }
 }
 
+void State::takeMagicDamage(int dmg) {
+    this->takeDamage(dmg);
+    
+    debugPrint("Unit take Magic Damage");
+}
+
 std::ostream& operator<<(std::ostream& out, const State& state) {
     out << "hp:" << state.getHitPoints();
     out << " dmg:" << state.getDamage();

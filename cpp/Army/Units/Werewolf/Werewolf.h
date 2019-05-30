@@ -6,6 +6,7 @@
 #include "../../Helpers/Debug.h"
 #include "../Unit.h"
 #include "../../States/State.h"
+#include "../../States/WolfState/WolfState.h"
 
 class Werewolf : public Unit {
     public:
