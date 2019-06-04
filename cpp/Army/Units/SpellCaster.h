@@ -5,21 +5,23 @@
 #include "Unit.h"
 #include "../States/SpellCasterState.h"
 #include "../Spells/Spell.h"
+#include "../Spells/SpellBook.h"
 #include "../Cast/Cast.h"
 
 
 class SpellCaster : public Unit {
     protected:
-        Spell *spell;
+        SpellBook *spellBook;
         SpellCasterState *scState;
         Cast *cast;
     public:
-        SpellCaster(const std::string& name, State *state, SpellCasterState *scState, BaseAttack *bAttack, Spell *spell, UnitType type);
+        SpellCaster(const std::string& name, State *state, SpellCasterState *scState, BaseAttack *bAttack, SpellBook *spellBook, UnitType type);
         ~SpellCaster();
         
         SpellCasterState& getScState() const;
         int getMana() const;
-        Spell& getSpell() const;
+        SpellBook& getSpellBook() const;
+        Spell& getSpell(const std::string name) const;
         
         void addMana(int mana);
         

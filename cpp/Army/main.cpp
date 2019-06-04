@@ -9,19 +9,20 @@
 
 int main() {
     std::cout << "\x1B" << "[2J" << "\x1B" << "[3J" << "\033[1;1H";
-    // Unit *sol = new Soldier("Vasya");
-    // Unit *rog = new Rogue("Grisha");
-    // Unit *ber = new Berserker("Tolya");
-    // Unit *vam = new Vampire("Gena");
+    Unit *sol = new Soldier("Vasya");
+    Unit *rog = new Rogue("Grisha");
+    Unit *ber = new Berserker("Tolya");
+    Unit *vam = new Vampire("Gena");
     Unit *wer = new Werewolf("Kolya");
     SpellCaster *wiz = new Wizard("Georgy", 50);
     
-    // std::cout << *sol << std::endl;
-    // std::cout << *rog << std::endl;
-    // std::cout << *ber << std::endl;
-    // std::cout << *vam << std::endl;
-    // std::cout << *wer << std::endl;
-    // std::cout << *wiz << std::endl;
+    
+    std::cout << *sol << std::endl;
+    std::cout << *rog << std::endl;
+    std::cout << *ber << std::endl;
+    std::cout << *vam << std::endl;
+    std::cout << *wer << std::endl;
+    std::cout << *wiz << std::endl;
     
     // sol->attack(*rog);
     // std::cout << "------------------" << std::endl;
@@ -45,19 +46,20 @@ int main() {
     std::cout << *wer << std::endl;
     std::cout << *wiz << std::endl;
     
-    wiz->castAction(*wer, wiz->getSpell());
+    wiz->castAction(*wer, wiz->getSpell("Fireball"));
     std::cout << *wer << std::endl;
     wer->useAbility();
     std::cout << *wer << std::endl;
-    wiz->castAction(*wer, wiz->getSpell());
+    wiz->castAction(*wer, wiz->getSpell("Fireball"));
     std::cout << *wer << std::endl;
     wer->useAbility();
     std::cout << *wer << std::endl;
+    std::cout << wiz->getSpellBook() << std::endl;
     
-    // delete sol;
-    // delete rog;
-    // delete ber;
-    // delete vam;
+    delete sol;
+    delete rog;
+    delete ber;
+    delete vam;
     delete wer;
     delete wiz;
     

@@ -1,9 +1,9 @@
 #include "State.h"
 
 State::State(int hp, int dmg) {
-    this->hitPoints = hp;
-    this->hitPointsLimit = hp;
-    this->damage = dmg;
+    this->hitPoints = randValue(hp);
+    this->hitPointsLimit = this->hitPoints;
+    this->damage = randValue(dmg);
     
     debugPrint("State created");
 }

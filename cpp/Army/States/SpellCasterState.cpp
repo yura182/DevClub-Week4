@@ -1,8 +1,8 @@
 #include "SpellCasterState.h"
 
 SpellCasterState::SpellCasterState(int mana) {
-    this->mana = mana;
-    this->manaLimit = mana;
+    this->mana = randValue(mana);
+    this->manaLimit = this->mana;
     
     debugPrint("SpellCasterState created");
 }

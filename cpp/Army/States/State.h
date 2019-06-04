@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include "../Helpers/Debug.h"
+#include "../Helpers/Randomizer.h"
 
 class State {
     private:
