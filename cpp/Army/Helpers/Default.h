@@ -27,6 +27,14 @@ enum class Mana {
     WIZARD = 50
 };
 
+enum class SpellDmg {
+    FIREBALL = 20
+};
+
+enum class SpellCost {
+    FIREBALL = 10
+};
+
 template <typename Enumeration>
 auto intVal(Enumeration const value)
     -> typename std::underlying_type<Enumeration>::type

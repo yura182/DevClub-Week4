@@ -2,6 +2,7 @@
 #define SPELL_H
 
 #include "../Helpers/Debug.h"
+#include "../Helpers/Default.h"
 
 class Spell {
     protected:
@@ -10,11 +11,13 @@ class Spell {
         int damage;
     public:
         Spell(const std::string& name, int manaCost, int damage);
-        ~Spell();
+        virtual ~Spell();
         
         const std::string& getName() const;
         int getManaCost() const;
         int getDamage() const;
 };
+
+std::ostream& operator<<(std::ostream& out, const Spell& spell);
 
 #endif // SPELL_H

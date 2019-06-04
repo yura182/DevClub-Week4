@@ -20,3 +20,10 @@ int Spell::getManaCost() const {
 int Spell::getDamage() const {
     return this->damage;
 }
+
+std::ostream& operator<<(std::ostream& out, const Spell& spell) {
+    out << spell.getName() << " [";
+    out << "mana:" << spell.getManaCost() << ", ";
+    out << "dmg:" << spell.getDamage() << "]";
+    return out;
+}

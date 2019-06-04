@@ -3,11 +3,11 @@
 SpellCaster::SpellCaster(const std::string& name,
                          State *state,
                          SpellCasterState *scState,
-                         BaseAttack *bAttack, Spell *spell,
+                         BaseAttack *bAttack, SpellBook *spellBook,
                          UnitType type)
                        : Unit(name, state, bAttack, type) {
     this->scState = scState;
-    this->spell = spell;
+    this->spellBook = spellBook;
     this->cast = new Cast();
     
     debugPrint("SpellCaster created", this->name);
@@ -15,7 +15,7 @@ SpellCaster::SpellCaster(const std::string& name,
 
 SpellCaster::~SpellCaster() {
     delete this->scState;
-    delete this->spell;
+    delete this->spellBook;
     delete this->cast;
     
     debugPrint("SpellCaster destroyed", this->name);
@@ -29,8 +29,12 @@ int SpellCaster::getMana() const {
     return this->scState->getMana();
 }
 
-Spell& SpellCaster::getSpell() const {
-    return *(this->spell);
+SpellBook& SpellCaster::getSpellBook() const {
+    return *(this->spellBook);
+}
+
+Spell& SpellCaster::getSpell(const std::string name) const {
+    return this->spellBook->getSpell(name);
 }
 
 void SpellCaster::addMana(int mana) {

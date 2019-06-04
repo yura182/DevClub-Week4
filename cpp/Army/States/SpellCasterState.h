@@ -2,6 +2,7 @@
 #define SPELLCASTERSTATE_H
 
 #include "../Helpers/Debug.h"
+#include "../Helpers/Randomizer.h"
 
 class SpellCasterState {
     private:

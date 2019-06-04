@@ -5,8 +5,10 @@ Wizard::Wizard(const std::string& name, int mana, int hp, int dmg)
                new State(hp, dmg),
                new SpellCasterState(mana),
                new BaseAttack(),
-               new Spell("Fireball", 10, 20),
+               new SpellBook(),
                UnitType::WIZARD) {
+    this->spellBook->insertSpell(new Fireball());
+    
     debugPrint("Wizard created", this->name);
 }
 
