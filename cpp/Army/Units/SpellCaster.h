@@ -15,8 +15,8 @@ class SpellCaster : public Unit {
         SpellCasterState *scState;
         Cast *cast;
     public:
-        SpellCaster(const std::string& name, State *state, SpellCasterState *scState, BaseAttack *bAttack, SpellBook *spellBook, UnitType type);
-        ~SpellCaster();
+        SpellCaster(const std::string& name, State *state, SpellCasterState *scState, BaseAttack *bAttack, SpellBook *spellBook, UnitType type, UnitType stateType, Cast *cast);
+        virtual ~SpellCaster();
         
         SpellCasterState& getScState() const;
         int getMana() const;
@@ -26,9 +26,13 @@ class SpellCaster : public Unit {
         void addMana(int mana);
         
         void castAction(Unit& unit, Spell& spell);
+        virtual void castAction(Spell& spell);
         
         bool haveMana() const;
         bool haveEnoughMana(Spell& spell) const;
+        
+        void showSpellBook() const;
+        virtual void showSpecial() const;
 };
 
 std::ostream& operator<<(std::ostream& out, const SpellCaster& sCaster);

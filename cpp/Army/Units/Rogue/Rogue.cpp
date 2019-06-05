@@ -1,8 +1,11 @@
 #include "Rogue.h"
 
 Rogue::Rogue(const std::string& name, int hp, int dmg) 
-                : Unit(name, new State(hp, dmg), new RogueAttack(),
-                  UnitType::ROGUE) {
+                : Unit(name,
+                  new State(hp, dmg),
+                  new RogueAttack(),
+                  UnitType::ROGUE,
+                  UnitType::ALIVE) {
     
     debugPrint("Rogue created", this->name);
 }

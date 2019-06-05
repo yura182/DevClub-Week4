@@ -4,11 +4,11 @@ SpellCaster::SpellCaster(const std::string& name,
                          State *state,
                          SpellCasterState *scState,
                          BaseAttack *bAttack, SpellBook *spellBook,
-                         UnitType type)
-                       : Unit(name, state, bAttack, type) {
+                         UnitType type, UnitType stateType, Cast *cast)
+                       : Unit(name, state, bAttack, type, stateType) {
     this->scState = scState;
     this->spellBook = spellBook;
-    this->cast = new Cast();
+    this->cast = cast;
     
     debugPrint("SpellCaster created", this->name);
 }
@@ -70,12 +70,26 @@ void SpellCaster::castAction(Unit& unit, Spell& spell) {
         return;
     }
     
+    if ( &unit == this ) {
+        std::cout << "Self cast!" << std::endl;
+        return;
+    }
+    
     std::cout << "\033[31m" << this->getName() << " " << this->getType() << " casted spell " << spell.getName() << " to " << unit.getName() << " " << unit.getType() << "\033[30m" << std::endl;
     
     this->cast->action(unit, spell);
     
     this->scState->reduceMana(spell.getManaCost());
 }
+
+void SpellCaster::castAction(Spell& spell) {}
+
+void SpellCaster::showSpellBook() const {
+    std::cout << "\033[32m" << "---- " << this->getName() << "'s Spell Book ----" << std::endl;
+    std::cout << this->getSpellBook() << "\033[30m" << std::endl;
+}
+
+void SpellCaster::showSpecial() const {}
 
 std::ostream& operator<<(std::ostream& out, const SpellCaster& sCaster) {
     out << "\033[30m" << sCaster.getName() << " " << sCaster.getType() << " [";

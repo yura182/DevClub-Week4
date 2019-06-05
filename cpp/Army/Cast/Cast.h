@@ -11,9 +11,10 @@ class Spell;
 class Cast {
     public:
         Cast();
-        ~Cast();
+        virtual ~Cast();
         
-        void action(Unit& unit, Spell& spell);
+        virtual void action(Unit& unit, Spell& spell);
+        virtual void action(Spell& spell);
 };
 
 #endif // CAST_H

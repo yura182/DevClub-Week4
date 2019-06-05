@@ -1,8 +1,11 @@
 #include "Soldier.h"
 
 Soldier::Soldier(const std::string& name, int hp, int dmg) 
-                : Unit(name, new State(hp, dmg), new BaseAttack(),
-                  UnitType::SOLDIER) {
+                : Unit(name,
+                  new State(hp, dmg),
+                  new BaseAttack(),
+                  UnitType::SOLDIER,
+                  UnitType::ALIVE) {
     
     debugPrint("Soldier created", this->name);
 }

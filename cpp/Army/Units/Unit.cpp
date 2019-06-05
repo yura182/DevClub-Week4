@@ -1,10 +1,11 @@
 #include "Unit.h"
 
-Unit::Unit(const std::string& name, State *state, BaseAttack *bAttack, UnitType type) {
+Unit::Unit(const std::string& name, State *state, BaseAttack *bAttack, UnitType type, UnitType stateType) {
     this->name = name;
     this->state = state;
     this->baseAttack = bAttack;
     this->type = type;
+    this->stateType = stateType;
     this->altState = NULL;
     
     debugPrint("Unit created", this->name);
@@ -48,6 +49,10 @@ UnitType Unit::getType() const {
     return this->type;
 }
 
+UnitType Unit::getStateType() const {
+    return this->stateType;
+}
+
 void Unit::addHitPoints(int hp) {
     if ( !isAlive() ) {
         std::cout << "Unit " << this->name << " is dead" << std::endl;
@@ -55,6 +60,10 @@ void Unit::addHitPoints(int hp) {
     }
     
     this->state->addHitPoints(hp);
+}
+
+void Unit::setName(const std::string& name) {
+    this->name = name;
 }
 
 void Unit::takeDamage(int dmg) {
@@ -81,6 +90,11 @@ void Unit::attack(Unit& enemy) {
         return;
     }
     
+    if ( &enemy == this ) {
+        std::cout << "Self attack!" << std::endl;
+        return;
+    }
+    
     this->baseAttack->attack(*this, enemy);
 }
 void Unit::counterAttack(Unit& enemy) {
@@ -90,8 +104,15 @@ void Unit::counterAttack(Unit& enemy) {
 void Unit::useAbility() {}
 
 std::ostream& operator<<(std::ostream& out, const Unit& unit) {
-    out << "\033[30m" << unit.getName() << " " << unit.getType() << " [";
+    out << "\033[30m" << unit.getName();
+    
+    if ( unit.getType() != UnitType::DEMON ) {
+        out << " " << unit.getType();
+    }
+    
+    out << " [";
     out << unit.getState() << "]";
+    
     return out;
 }
 
@@ -117,6 +138,18 @@ std::ostream& operator<<(std::ostream& out, const UnitType& type) {
             break;
         case UnitType::WIZARD:
             out << "Wizard";
+            break;
+        case UnitType::HEALER:
+            out << "Healer";
+            break;
+        case UnitType::PRIEST:
+            out << "Priest";
+            break;
+        case UnitType::WARLOCK:
+            out << "Warlock";
+            break;
+        case UnitType::DEMON:
+            out << "Demon";
             break;
         default:
             out << "Unknown";

@@ -18,8 +18,15 @@ enum class UnitType {
     VAMPIRE,
     WEREWOLF,
     WOLF,
+    DEMON,
     
-    WIZARD
+    WIZARD,
+    HEALER,
+    PRIEST,
+    WARLOCK,
+    
+    ALIVE,
+    UNDEAD
 };
 
 class Unit {
@@ -29,8 +36,9 @@ class Unit {
         State *altState;
         BaseAttack *baseAttack;
         UnitType type;
+        UnitType stateType;
         
-        Unit(const std::string& name, State *state, BaseAttack *bAttack, UnitType type);
+        Unit(const std::string& name, State *state, BaseAttack *bAttack, UnitType type, UnitType stateType);
     public:
         virtual ~Unit();
         
@@ -42,13 +50,15 @@ class Unit {
         
         int getDamage() const;
         UnitType getType() const;
+        UnitType getStateType() const;
         
         void addHitPoints(int hp);
+        void setName(const std::string& name);
         void takeDamage(int dmg);
         virtual void takeMagicDamage(int dmg);
         
-        void attack(Unit& enemy);
-        void counterAttack(Unit& enemy);
+        virtual void attack(Unit& enemy);
+        virtual void counterAttack(Unit& enemy);
         
         virtual void useAbility();
 };
