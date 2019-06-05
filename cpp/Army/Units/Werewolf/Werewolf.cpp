@@ -1,8 +1,11 @@
 #include "Werewolf.h"
 
 Werewolf::Werewolf(const std::string& name, int hp, int dmg) 
-                : Unit(name, new State(hp, dmg), new BaseAttack(),
-                  UnitType::WEREWOLF) {
+                : Unit(name,
+                  new State(hp, dmg),
+                  new BaseAttack(),
+                  UnitType::WEREWOLF,
+                  UnitType::ALIVE) {
     
     debugPrint("Werewolf created", this->name);
 }

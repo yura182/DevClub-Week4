@@ -1,21 +1,21 @@
-#include "Wizard.h"
+#include "Healer.h"
 
-Wizard::Wizard(const std::string& name, int mana, int hp, int dmg)
+Healer::Healer(const std::string& name, int mana, int hp, int dmg)
              : SpellCaster(name,
                new State(hp, dmg),
                new SpellCasterState(mana),
                new BaseAttack(),
                new SpellBook(),
-               UnitType::WIZARD,
+               UnitType::HEALER,
                UnitType::ALIVE,
-               new WizardCast()) {
+               new HealerCast()) {
     this->spellBook->insertSpell(new Fireball());
     this->spellBook->insertSpell(new MagicArrow());
     this->spellBook->insertSpell(new Cure());
     
-    debugPrint("Wizard created", this->name);
+    debugPrint("Healer created", this->name);
 }
 
-Wizard::~Wizard() {
-    debugPrint("Wizard destroyed", this->name);
+Healer::~Healer() {
+    debugPrint("Healer destroyed", this->name);
 }

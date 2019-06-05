@@ -1,8 +1,11 @@
 #include "Berserker.h"
 
 Berserker::Berserker(const std::string& name, int hp, int dmg) 
-                : Unit(name, new State(hp, dmg), new BaseAttack(),
-                  UnitType::BERSERKER) {
+                : Unit(name,
+                  new State(hp, dmg),
+                  new BaseAttack(),
+                  UnitType::BERSERKER,
+                  UnitType::ALIVE) {
     
     debugPrint("Berserker created", this->name);
 }

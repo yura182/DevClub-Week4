@@ -47,8 +47,6 @@ std::ostream& operator<<(std::ostream& out, const SpellBook& book) {
     std::map<std::string, Spell*>::const_iterator it;
     it = book.getBook().begin();
     
-    out << "------ Spell Book ------" << std::endl;
-    
     if ( book.getBook().empty() ) {
         out << "Spell book is empty" << std::endl;
     } else {

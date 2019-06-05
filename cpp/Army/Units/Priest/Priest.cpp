@@ -1,21 +1,21 @@
-#include "Wizard.h"
+#include "Priest.h"
 
-Wizard::Wizard(const std::string& name, int mana, int hp, int dmg)
+Priest::Priest(const std::string& name, int mana, int hp, int dmg)
              : SpellCaster(name,
                new State(hp, dmg),
                new SpellCasterState(mana),
-               new BaseAttack(),
+               new PriestAttack(),
                new SpellBook(),
-               UnitType::WIZARD,
+               UnitType::PRIEST,
                UnitType::ALIVE,
-               new WizardCast()) {
+               new PriestCast()) {
     this->spellBook->insertSpell(new Fireball());
     this->spellBook->insertSpell(new MagicArrow());
     this->spellBook->insertSpell(new Cure());
     
-    debugPrint("Wizard created", this->name);
+    debugPrint("Priest created", this->name);
 }
 
-Wizard::~Wizard() {
-    debugPrint("Wizard destroyed", this->name);
+Priest::~Priest() {
+    debugPrint("Priest destroyed", this->name);
 }

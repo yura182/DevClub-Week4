@@ -6,6 +6,9 @@
 #include "Spell.h"
 #include "../Helpers/Exceptions.h"
 #include "Fireball/Fireball.h"
+#include "MagicArrow/MagicArrow.h"
+#include "Cure/Cure.h"
+#include "SummonDemon/SummonDemon.h"
 
 class SpellBook {
     private:

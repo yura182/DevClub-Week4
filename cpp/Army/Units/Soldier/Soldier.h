@@ -8,7 +8,7 @@
 class Soldier : public Unit {
     public:
         Soldier(const std::string& name, int hp=intVal(Health::SOLDIER), int dmg=intVal(Damage::SOLDIER));
-        ~Soldier();
+        virtual ~Soldier();
 };
 
 #endif // SOLDIER_H
