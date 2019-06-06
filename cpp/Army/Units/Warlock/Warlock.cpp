@@ -89,7 +89,9 @@ void Warlock::attack(Unit& enemy) {
         std::set<Unit*>::iterator it = this->demons.begin();
         
         for ( ; it != this->demons.end(); it++ ) {
-            (*it)->attack(enemy);
+            if (enemy.isAlive() ) {
+                (*it)->attack(enemy);
+            }
         }
     }
 }

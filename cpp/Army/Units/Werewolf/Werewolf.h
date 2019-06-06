@@ -1,12 +1,11 @@
 #ifndef WEREWOLF_H
 #define WEREWOLF_H
 
-#define TRANSFORM_COEF 2
-
 #include "../../Helpers/Debug.h"
 #include "../Unit.h"
 #include "../../States/State.h"
 #include "../../States/WolfState/WolfState.h"
+#include "../../States/WerewolfState/WerewolfState.h"
 
 class Werewolf : public Unit {
     public:
@@ -14,7 +13,6 @@ class Werewolf : public Unit {
         ~Werewolf();
         
         void useAbility();
-        void transform();
 };
 
 #endif // WEREWOLF_H

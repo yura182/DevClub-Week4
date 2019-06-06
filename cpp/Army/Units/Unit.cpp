@@ -36,8 +36,12 @@ const std::string& Unit::getName() const {
     return this->name;
 }
 
-const State& Unit::getState() const {
+State& Unit::getState() const {
     return *(this->state);
+}
+
+State& Unit::getAltState() const {
+    return *(this->altState);
 }
 
 int Unit::getDamage() const {
@@ -51,6 +55,10 @@ UnitType Unit::getType() const {
 
 UnitType Unit::getStateType() const {
     return this->stateType;
+}
+
+BaseAttack* Unit::getAttack() const {
+    return this->baseAttack;
 }
 
 void Unit::addHitPoints(int hp) {
@@ -82,6 +90,10 @@ void Unit::takeMagicDamage(int dmg) {
     }
     
     this->state->takeMagicDamage(dmg);
+    
+    if ( !this->isAlive() ) {
+        this->notify();
+    }
 }
 
 void Unit::attack(Unit& enemy) {
@@ -96,12 +108,68 @@ void Unit::attack(Unit& enemy) {
     }
     
     this->baseAttack->attack(*this, enemy);
+    
+    // if ( !enemy.isAlive() ) {
+    //     enemy.notify();
+    // }
 }
 void Unit::counterAttack(Unit& enemy) {
     this->baseAttack->counterAttack(*this, enemy);
+    
+    // if ( !enemy.isAlive() ) {
+    //     enemy.notify();
+    // }
 }
 
 void Unit::useAbility() {}
+
+void Unit::useAbility(Unit& unit) {}
+
+void Unit::addObserver(Observer *observer) {
+    this->observers.insert(observer);
+    
+    debugPrint("Added observer", this->name);
+}
+
+void Unit::removeObserver(Observer *observer) {
+    std::set<Observer*>::iterator it = this->observers.find(observer);
+    
+    if ( it != this->observers.end() ) {
+        this->observers.erase(it);
+    }
+}
+
+void Unit::notify() {
+    if ( !this->observers.empty() ) {
+        std::set<Observer*>::iterator it = this->observers.begin();
+        int partHp = this->getState().getHitPointsLimit() * PART_HP_NECR;
+        
+        debugPrint("Notified observers", this->name);
+        
+        for ( ; it != this->observers.end(); it++ ) {
+            (*it)->update(partHp);
+        }
+    }
+}
+
+void Unit::setType(UnitType type) {
+    this->type = type;
+}
+
+void Unit::setStateType(UnitType type) {
+    this->stateType = type;
+}
+
+void Unit::setAttack(BaseAttack *attack) {
+    this->baseAttack = attack;
+}
+
+void Unit::setState(State *state) {
+    this->state = state;
+}
+void Unit::setAltState(State *state) {
+    this->altState = state;
+}
 
 std::ostream& operator<<(std::ostream& out, const Unit& unit) {
     out << "\033[30m" << unit.getName();
@@ -150,6 +218,9 @@ std::ostream& operator<<(std::ostream& out, const UnitType& type) {
             break;
         case UnitType::DEMON:
             out << "Demon";
+            break;
+        case UnitType::NECROMANCER:
+            out << "Necromancer";
             break;
         default:
             out << "Unknown";

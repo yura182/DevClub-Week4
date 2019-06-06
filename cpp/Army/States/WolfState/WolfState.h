@@ -12,6 +12,7 @@ class WolfState : public State {
         ~WolfState();
         
         void takeMagicDamage(int dmg);
+        void transform(Unit& unit);
 };
 
 #endif // WOLFSTATES_H

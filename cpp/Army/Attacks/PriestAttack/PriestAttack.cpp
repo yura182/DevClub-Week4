@@ -18,6 +18,8 @@ void PriestAttack::attack(Unit& attacker, Unit& victim) {
     
     if ( victim.isAlive() ) {
         victim.counterAttack(attacker);
+    } else {
+        victim.notify();
     }
 }
 
@@ -29,4 +31,8 @@ void PriestAttack::counterAttack(Unit& attacker, Unit& victim) {
     }
     
     std::cout << "\033[31m" << attacker.getName() << " " << attacker.getType() << " counter attacked " << victim.getName() << " " << victim.getType() << "\033[30m" << std::endl;
+    
+    if ( !victim.isAlive() ) {
+        victim.notify();
+    }
 }
