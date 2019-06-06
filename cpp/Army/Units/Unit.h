@@ -1,12 +1,17 @@
 #ifndef UNIT_H
 #define UNIT_H
 
+#define PART_HP_NECR 0.1
+
 #include <iostream>
+#include <set>
 #include "../Helpers/Exceptions.h"
 #include "../Helpers/Debug.h"
 #include "../States/State.h"
 #include "../Attacks/BaseAttack.h"
 #include "../Helpers/Default.h"
+#include "../Interfaces/Observable.h"
+#include "../Interfaces/Observer.h"
 
 class State;
 class BaseAttack;
@@ -24,12 +29,13 @@ enum class UnitType {
     HEALER,
     PRIEST,
     WARLOCK,
+    NECROMANCER,
     
     ALIVE,
     UNDEAD
 };
 
-class Unit {
+class Unit : public Observable {
     protected:
         std::string name;
         State *state;
@@ -37,6 +43,8 @@ class Unit {
         BaseAttack *baseAttack;
         UnitType type;
         UnitType stateType;
+        
+        std::set<Observer*> observers;
         
         Unit(const std::string& name, State *state, BaseAttack *bAttack, UnitType type, UnitType stateType);
     public:
@@ -46,11 +54,13 @@ class Unit {
         void esureIsAlive();
         
         const std::string& getName() const;
-        const State& getState() const;
+        State& getState() const;
+        State& getAltState() const;
         
         int getDamage() const;
         UnitType getType() const;
         UnitType getStateType() const;
+        BaseAttack* getAttack() const;
         
         void addHitPoints(int hp);
         void setName(const std::string& name);
@@ -61,6 +71,17 @@ class Unit {
         virtual void counterAttack(Unit& enemy);
         
         virtual void useAbility();
+        virtual void useAbility(Unit& unit);
+        
+        virtual void addObserver(Observer *observer);
+        virtual void removeObserver(Observer *observer);
+        virtual void notify();
+        
+        void setType(UnitType type);
+        void setStateType(UnitType type);
+        void setAttack(BaseAttack *attack);
+        void setState(State *state);
+        void setAltState(State *state);
 };
 
 std::ostream& operator<<(std::ostream& out, const Unit& unit);

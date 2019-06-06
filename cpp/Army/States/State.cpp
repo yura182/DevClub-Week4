@@ -1,8 +1,12 @@
 #include "State.h"
 
-State::State(int hp, int dmg) {
+State::State(int hp, int dmg, int hpLim) {
     this->hitPoints = randValue(hp);
-    this->hitPointsLimit = this->hitPoints;
+    if ( hpLim == 0 ) {
+        this->hitPointsLimit = this->hitPoints;
+    } else {
+        this->hitPointsLimit = randValue(hpLim);
+    }
     this->damage = randValue(dmg);
     
     debugPrint("State created");
@@ -20,6 +24,16 @@ int State::getHitPoints() const {
 }
 int State::getHitPointsLimit() const {
     return this->hitPointsLimit;
+}
+
+void State::setDamage(int dmg) {
+    this->damage = dmg;
+}
+void State::setHitPoints(int hp) {
+    this->hitPoints = hp;
+}
+void State::setHitPointsLimit(int hpLim) {
+    this->hitPointsLimit = hpLim;
 }
 
 void State::addHitPoints(int hp) {
@@ -45,6 +59,8 @@ void State::takeMagicDamage(int dmg) {
     
     debugPrint("Unit take Magic Damage");
 }
+
+void State::transform(Unit& unit) {}
 
 std::ostream& operator<<(std::ostream& out, const State& state) {
     out << "hp:" << state.getHitPoints();

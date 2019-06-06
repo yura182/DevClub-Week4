@@ -17,9 +17,11 @@ void BaseAttack::attack(Unit& attacker, Unit& victim) {
     }
     
     std::cout << " attacked " << victim.getName() << " " << victim.getType() << "\033[30m" << std::endl;
-    
+
     if ( victim.isAlive() ) {
         victim.counterAttack(attacker);
+    } else {
+        victim.notify();
     }
 }
 
@@ -37,4 +39,8 @@ void BaseAttack::counterAttack(Unit& attacker, Unit& victim) {
     }
     
     std::cout << "\033[30m" << std::endl;
+    
+    if ( !victim.isAlive() ) {
+        victim.notify();
+    }
 }

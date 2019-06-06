@@ -2,7 +2,7 @@
 #define DEFAULT_H
 
 enum class Health {
-    SOLDIER = 100,
+    SOLDIER = 120,
     ROGUE = 90,
     BERSERKER = 85,
     VAMPIRE = 75,
@@ -13,7 +13,8 @@ enum class Health {
     WIZARD = 50,
     HEALER = 55,
     PRIEST = 49,
-    WARLOCK = 44
+    WARLOCK = 44,
+    NECROMANCER = 52
 };
 
 enum class Damage {
@@ -28,14 +29,16 @@ enum class Damage {
     WIZARD = 18,
     HEALER = 20,
     PRIEST = 22,
-    WARLOCK = 18
+    WARLOCK = 18,
+    NECROMANCER = 15
 };
 
 enum class Mana {
     WIZARD = 50,
     HEALER = 65,
     PRIEST = 70,
-    WARLOCK = 60
+    WARLOCK = 60,
+    NECROMANCER = 52
 };
 
 enum class SpellDmg {

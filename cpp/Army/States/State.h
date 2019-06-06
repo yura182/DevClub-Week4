@@ -4,6 +4,9 @@
 #include <iostream>
 #include "../Helpers/Debug.h"
 #include "../Helpers/Randomizer.h"
+#include "../Units/Unit.h"
+
+class Unit;
 
 class State {
     private:
@@ -11,16 +14,22 @@ class State {
         int hitPoints;
         int hitPointsLimit;
     public:
-        State(int hp, int dmg);
+        State(int hp, int dmg, int hpLim=0);
         virtual ~State();
         
         int getDamage() const;
         int getHitPoints() const;
         int getHitPointsLimit() const;
         
+        void setDamage(int dmg);
+        void setHitPoints(int hp);
+        void setHitPointsLimit(int hpLim);
+        
         void addHitPoints(int hp);
         void takeDamage(int hp);
         virtual void takeMagicDamage(int dmg);
+        
+        virtual void transform(Unit& unit);
 };
 
 std::ostream& operator<<(std::ostream& out, const State& state);
