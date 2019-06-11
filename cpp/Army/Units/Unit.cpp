@@ -1,12 +1,13 @@
 #include "Unit.h"
 
-Unit::Unit(const std::string& name, State *state, BaseAttack *bAttack, UnitType type, UnitType stateType) {
+Unit::Unit(const std::string& name, State *state, BaseAttack *bAttack, UnitType type, UnitType stateType, Ability *ability) {
     this->name = name;
     this->state = state;
     this->baseAttack = bAttack;
     this->type = type;
     this->stateType = stateType;
     this->altState = NULL;
+    this->ability = ability;
     
     debugPrint("Unit created", this->name);
 }
@@ -17,6 +18,9 @@ Unit::~Unit() {
     
     if ( this->altState ) {
         delete this->altState;
+    }
+    if ( this->ability ) {
+        delete this->ability;
     }
     
     debugPrint("Unit destroyed", this->name);
@@ -59,6 +63,10 @@ UnitType Unit::getStateType() const {
 
 BaseAttack* Unit::getAttack() const {
     return this->baseAttack;
+}
+
+Ability* Unit::getAbility() const {
+    return this->ability;
 }
 
 void Unit::addHitPoints(int hp) {
@@ -108,22 +116,26 @@ void Unit::attack(Unit& enemy) {
     }
     
     this->baseAttack->attack(*this, enemy);
-    
-    // if ( !enemy.isAlive() ) {
-    //     enemy.notify();
-    // }
 }
 void Unit::counterAttack(Unit& enemy) {
     this->baseAttack->counterAttack(*this, enemy);
-    
-    // if ( !enemy.isAlive() ) {
-    //     enemy.notify();
-    // }
 }
 
-void Unit::useAbility() {}
+void Unit::useAbility() {
+    if ( this->ability ) {
+        this->ability->useSelfAbility(*this);
+    } else {
+        std::cout << this->name << " " << this->type << " dont have ability" << std::endl;
+    }
+}
 
-void Unit::useAbility(Unit& unit) {}
+void Unit::useAbility(Unit& unit) {
+    if ( this->ability ) {
+        this->ability->useAbility(unit);
+    } else {
+        std::cout << this->name << " " << this->type << " dont have ability" <<  std::endl;
+    }
+}
 
 void Unit::addObserver(Observer *observer) {
     this->observers.insert(observer);
@@ -167,17 +179,18 @@ void Unit::setAttack(BaseAttack *attack) {
 void Unit::setState(State *state) {
     this->state = state;
 }
+
 void Unit::setAltState(State *state) {
     this->altState = state;
 }
 
+void Unit::setAbility(Ability *ability) {
+    this->ability = ability;
+}
+
 std::ostream& operator<<(std::ostream& out, const Unit& unit) {
     out << "\033[30m" << unit.getName();
-    
-    if ( unit.getType() != UnitType::DEMON ) {
-        out << " " << unit.getType();
-    }
-    
+    out << " " << unit.getType();
     out << " [";
     out << unit.getState() << "]";
     

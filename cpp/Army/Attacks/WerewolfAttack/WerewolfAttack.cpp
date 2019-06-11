@@ -1,13 +1,13 @@
-#include "BaseAttack.h"
+#include "WerewolfAttack.h"
 
-BaseAttack::BaseAttack() {
-    debugPrint("BaseAttack created");
+WerewolfAttack::WerewolfAttack() {
+    debugPrint("WerewolfAttack created");
 }
-BaseAttack::~BaseAttack() {
-    debugPrint("BaseAttack destroyed");
+WerewolfAttack::~WerewolfAttack() {
+    debugPrint("WerewolfAttack destroyed");
 }
 
-void BaseAttack::attack(Unit& attacker, Unit& victim) {
+void WerewolfAttack::attack(Unit& attacker, Unit& victim) {
     victim.takeDamage(attacker.getDamage());
     
     std::cout << "\033[31m" << attacker.getName();
@@ -15,13 +15,16 @@ void BaseAttack::attack(Unit& attacker, Unit& victim) {
     std::cout << " attacked " << victim.getName() << " " << victim.getType() << "\033[30m" << std::endl;
 
     if ( victim.isAlive() ) {
+        if ( randValue(100) > 102 ) {
+            attacker.useAbility(victim);
+        }
+        
         victim.counterAttack(attacker);
     } else {
         victim.notify();
     }
 }
-
-void BaseAttack::counterAttack(Unit& attacker, Unit& victim) {
+void WerewolfAttack::counterAttack(Unit& attacker, Unit& victim) {
     victim.takeDamage(attacker.getDamage() / 2);
     
     std::cout << "\033[35m" << attacker.getName();
@@ -30,7 +33,11 @@ void BaseAttack::counterAttack(Unit& attacker, Unit& victim) {
     std::cout << " " << victim.getType();
     std::cout << "\033[30m" << std::endl;
     
-    if ( !victim.isAlive() ) {
+    if ( victim.isAlive() ) {
+        if ( randValue(100) > 103 ) {
+            attacker.useAbility(victim);
+        }
+    } else {
         victim.notify();
     }
 }

@@ -12,9 +12,11 @@
 #include "../Helpers/Default.h"
 #include "../Interfaces/Observable.h"
 #include "../Interfaces/Observer.h"
+#include "../Abilities/Ability.h"
 
 class State;
 class BaseAttack;
+class Ability;
 
 enum class UnitType {
     SOLDIER,
@@ -41,12 +43,13 @@ class Unit : public Observable {
         State *state;
         State *altState;
         BaseAttack *baseAttack;
+        Ability *ability;
         UnitType type;
         UnitType stateType;
         
         std::set<Observer*> observers;
         
-        Unit(const std::string& name, State *state, BaseAttack *bAttack, UnitType type, UnitType stateType);
+        Unit(const std::string& name, State *state, BaseAttack *bAttack, UnitType type, UnitType stateType, Ability *ability=NULL);
     public:
         virtual ~Unit();
         
@@ -54,13 +57,17 @@ class Unit : public Observable {
         void esureIsAlive();
         
         const std::string& getName() const;
+        
         State& getState() const;
         State& getAltState() const;
         
-        int getDamage() const;
         UnitType getType() const;
         UnitType getStateType() const;
+        
         BaseAttack* getAttack() const;
+        Ability* getAbility() const;
+        
+        int getDamage() const;
         
         void addHitPoints(int hp);
         void setName(const std::string& name);
@@ -82,6 +89,7 @@ class Unit : public Observable {
         void setAttack(BaseAttack *attack);
         void setState(State *state);
         void setAltState(State *state);
+        void setAbility(Ability *ability);
 };
 
 std::ostream& operator<<(std::ostream& out, const Unit& unit);

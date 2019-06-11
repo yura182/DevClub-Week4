@@ -46,7 +46,7 @@ void Warlock::castAction(Spell& spell) {
         Unit *unit = spell.summon();
         std::string newName = this->name;
         
-        newName.append("'s Demon").append(std::to_string(this->demons.size() + 1));
+        newName.append("'s slave").append(std::to_string(this->demons.size() + 1));
         
         unit->setName(newName);
         
@@ -54,15 +54,15 @@ void Warlock::castAction(Spell& spell) {
         
         this->scState->reduceMana(spell.getManaCost());
         
-        std::cout << "\033[31m" << this->getName() << " " << this->getType() << " casted spell " << spell.getName() << " and summoned " << unit->getName() << "\033[30m" << std::endl;
+        std::cout << "\033[31m" << this->getName() << " " << this->getType() << " casted spell " << spell.getName() << " and summoned " << unit->getName() << " " << unit->getType() << "\033[30m" << std::endl;
     }
 }
 
 void Warlock::showSpecial() const {
-    std::cout << "\033[32m" << "---- " << this->getName() << "'s Demons ----" << std::endl;
+    std::cout << "\033[32m" << "---- " << this->getName() << "'s Slaves ----" << std::endl;
     
     if ( this->demons.empty() ) {
-        std::cout << this->name << " don't have demons" << "\033[30m" << std::endl;
+        std::cout << this->name << " don't have slaves" << "\033[30m" << std::endl;
     } else {
         std::cout << this->demons << "\033[30m" << std::endl;
     }
