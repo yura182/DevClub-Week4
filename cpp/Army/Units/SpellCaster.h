@@ -14,6 +14,7 @@ class SpellCaster : public Unit {
         SpellBook *spellBook;
         SpellCasterState *scState;
         Cast *cast;
+        bool canCast;
     public:
         SpellCaster(const std::string& name, State *state, SpellCasterState *scState, BaseAttack *bAttack, SpellBook *spellBook, UnitType type, UnitType stateType, Cast *cast);
         virtual ~SpellCaster();
@@ -33,8 +34,12 @@ class SpellCaster : public Unit {
         
         void showSpellBook() const;
         virtual void showSpecial() const;
+        
+        void setCantCast();
 };
 
 std::ostream& operator<<(std::ostream& out, const SpellCaster& sCaster);
+
+bool isSpellCaster(Unit& unit);
 
 #endif // SPELLCASTER_H

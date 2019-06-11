@@ -2,7 +2,7 @@
 
 Berserker::Berserker(const std::string& name, int hp, int dmg) 
                 : Unit(name,
-                  new State(hp, dmg),
+                  new BerserkerState(hp, dmg),
                   new BaseAttack(),
                   UnitType::BERSERKER,
                   UnitType::ALIVE) {
@@ -11,8 +11,4 @@ Berserker::Berserker(const std::string& name, int hp, int dmg)
 }
 Berserker::~Berserker() {
     debugPrint("Berserker destroyed", this->name);
-}
-
-void Berserker::takeMagicDamage(int dmg) {
-    std::cout << this->getName() << " " << this->getType() << " says - \"Ha-Ha\"" << std::endl;
 }

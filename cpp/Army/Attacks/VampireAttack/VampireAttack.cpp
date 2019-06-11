@@ -48,7 +48,11 @@ void VampireAttack::counterAttack(Unit& attacker, Unit& victim) {
     
     std::cout << "\033[31m" << attacker.getName() << " counter attacked " << victim.getName() <<  " and stealed " << stealedHp << " health points" << std::endl;
     
-    if ( !victim.isAlive() ) {
+    if ( victim.isAlive() ) {
+        if ( randValue(100) > 103 ) {
+            attacker.useAbility(victim);
+        }
+    } else {
         victim.notify();
     }
 }

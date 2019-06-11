@@ -9,6 +9,7 @@ SpellCaster::SpellCaster(const std::string& name,
     this->scState = scState;
     this->spellBook = spellBook;
     this->cast = cast;
+    this->canCast = true;
     
     debugPrint("SpellCaster created", this->name);
 }
@@ -60,6 +61,11 @@ void SpellCaster::castAction(Unit& unit, Spell& spell) {
         return;
     }
     
+    // if ( !this->canCast ) {
+    //     std::cout << "Unit " << this->name << " can't cast anymore" << std::endl;
+    //     return;
+    // }
+    
     if ( !haveMana() ) {
         std::cout << "Unit " << this->name << " don't have mana" << std::endl;
         return;
@@ -91,8 +97,24 @@ void SpellCaster::showSpellBook() const {
 
 void SpellCaster::showSpecial() const {}
 
+void SpellCaster::setCantCast() {
+    this->canCast = false;
+}
+
 std::ostream& operator<<(std::ostream& out, const SpellCaster& sCaster) {
     out << "\033[30m" << sCaster.getName() << " " << sCaster.getType() << " [";
     out << sCaster.getState() << sCaster.getScState() << "]";
     return out;
+}
+
+bool isSpellCaster(Unit& unit) {
+    if ( unit.getType() == UnitType::WIZARD ||
+         unit.getType() == UnitType::HEALER ||
+         unit.getType() == UnitType::PRIEST ||
+         unit.getType() == UnitType::WARLOCK ||
+         unit.getType() == UnitType::NECROMANCER ) {
+        return true;
+    } else {
+        return false;
+    }
 }

@@ -3,9 +3,10 @@
 Werewolf::Werewolf(const std::string& name, int hp, int dmg) 
                 : Unit(name,
                   new WerewolfState(hp, dmg),
-                  new BaseAttack(),
+                  new WerewolfAttack(),
                   UnitType::WEREWOLF,
-                  UnitType::ALIVE) {
+                  UnitType::ALIVE,
+                  new WerewolfAbility()) {
     
     debugPrint("Werewolf created", this->name);
 }
@@ -13,6 +14,3 @@ Werewolf::~Werewolf() {
     debugPrint("Werewolf destroyed", this->name);
 }
 
-void Werewolf::useAbility() {
-    this->state->transform(*this);
-}
