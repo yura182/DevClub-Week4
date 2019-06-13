@@ -38,6 +38,10 @@ Spell& SpellCaster::getSpell(const std::string name) const {
     return this->spellBook->getSpell(name);
 }
 
+bool SpellCaster::getCanCast() const {
+    return this->canCast;
+}
+
 void SpellCaster::addMana(int mana) {
     if ( !isAlive() ) {
         std::cout << "Unit " << this->name << " is dead" << std::endl;
@@ -61,10 +65,10 @@ void SpellCaster::castAction(Unit& unit, Spell& spell) {
         return;
     }
     
-    // if ( !this->canCast ) {
-    //     std::cout << "Unit " << this->name << " can't cast anymore" << std::endl;
-    //     return;
-    // }
+    if ( !this->canCast ) {
+        std::cout << "\033[35m" << "Unit " << this->name << " can't cast anymore" << "\033[30m" << std::endl;
+        return;
+    }
     
     if ( !haveMana() ) {
         std::cout << "Unit " << this->name << " don't have mana" << std::endl;
@@ -103,7 +107,13 @@ void SpellCaster::setCantCast() {
 
 std::ostream& operator<<(std::ostream& out, const SpellCaster& sCaster) {
     out << "\033[30m" << sCaster.getName() << " " << sCaster.getType() << " [";
-    out << sCaster.getState() << sCaster.getScState() << "]";
+    out << sCaster.getState();
+    
+    if ( sCaster.getCanCast() ) {
+        out << sCaster.getScState();
+    }
+    
+    out << "]";
     return out;
 }
 

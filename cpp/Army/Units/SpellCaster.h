@@ -23,6 +23,7 @@ class SpellCaster : public Unit {
         int getMana() const;
         SpellBook& getSpellBook() const;
         Spell& getSpell(const std::string name) const;
+        bool getCanCast() const;
         
         void addMana(int mana);
         

@@ -50,6 +50,10 @@ void WerewolfAbility::infect(Unit& unit) {
         return;
     }
     
+    if ( isSpellCaster(unit) ) {
+        infectSpellCaster(unit);
+    }
+    
     unit.setType(UnitType::WEREWOLF);
     unit.setStateType(UnitType::ALIVE);
     
@@ -62,4 +66,9 @@ void WerewolfAbility::infect(Unit& unit) {
     unit.setAbility(new WerewolfAbility());
     
     std::cout << "\033[35m" << unit.getName() << " transformed into Werewolf" << "\033[30m" << std::endl;
+}
+
+void WerewolfAbility::infectSpellCaster(Unit& unit) {
+    SpellCaster &spellCaster = dynamic_cast<SpellCaster&>(unit);
+    spellCaster.setCantCast();
 }
