@@ -20,6 +20,11 @@ Necromancer::~Necromancer() {
 }
 
 void Necromancer::update(int hp) {
+    if ( !this->canCast ) {
+        debugPrint("Unit is not necromancer anymore", this->name);
+        return;
+    }
+    
     if ( hp > 0 && this->isAlive() ) {
       this->addHitPoints(hp);
       
@@ -39,16 +44,22 @@ void Necromancer::attack(Unit& enemy) {
         return;
     }
     
+    if ( !enemy.isAlive() ) {
+      std::cout << "Unit " << enemy.getName() << " is dead already" << std::endl;
+      return;
+    }
+    
     this->baseAttack->attack(*this, enemy);
     
     if ( enemy.isAlive() ) {
+        if ( !this->canCast ) {
+            debugPrint("Unit is not necromancer anymore", this->name);
+            return;
+        }
+        
         Observer *observer = this;
         
         enemy.addObserver(observer);
-    } else {
-        int partHp = enemy.getState().getHitPointsLimit() * PART_HP_NECR;
-        
-        this->update(partHp);
     }
 }
 

@@ -122,6 +122,11 @@ void Unit::counterAttack(Unit& enemy) {
 }
 
 void Unit::useAbility() {
+    if ( !isAlive() ) {
+        std::cout << "Unit " << this->name << " is dead" << std::endl;
+        return;
+    }
+    
     if ( this->ability ) {
         this->ability->useSelfAbility(*this);
     } else {
@@ -130,6 +135,11 @@ void Unit::useAbility() {
 }
 
 void Unit::useAbility(Unit& unit) {
+    if ( !isAlive() ) {
+        std::cout << "Unit " << this->name << " is dead" << std::endl;
+        return;
+    }
+    
     if ( this->ability ) {
         this->ability->useAbility(unit);
     } else {
@@ -138,9 +148,13 @@ void Unit::useAbility(Unit& unit) {
 }
 
 void Unit::addObserver(Observer *observer) {
-    this->observers.insert(observer);
+    std::set<Observer*>::iterator it = this->observers.find(observer);
     
-    debugPrint("Added observer", this->name);
+    if ( it == this->observers.end() ) {
+        this->observers.insert(observer);
+        
+        debugPrint("Added observer", this->name);
+    }
 }
 
 void Unit::removeObserver(Observer *observer) {

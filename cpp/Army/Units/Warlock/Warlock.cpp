@@ -4,7 +4,7 @@ Warlock::Warlock(const std::string& name, int mana, int hp, int dmg)
              : SpellCaster(name,
                new State(hp, dmg),
                new SpellCasterState(mana),
-               new BaseAttack(),
+               new WarlockAttack(),
                new SpellBook(),
                UnitType::WARLOCK,
                UnitType::ALIVE,
@@ -25,6 +25,7 @@ Warlock::~Warlock() {
     
     debugPrint("Warlock destroyed", this->name);
 }
+
 const std::set<Unit*>& Warlock::getDemons() const {
     return this->demons;
 }
@@ -41,8 +42,10 @@ void Warlock::castAction(Spell& spell) {
     }
     
     if ( !this->haveEnoughMana(spell) ) {
-        std::cout << "Unit " << this->name << " don't have enough mane for " <<spell.getName() << " spell" << std::endl;
-    } else {
+        std::cout << "Unit " << this->name << " don't have enough mana for " <<spell.getName() << " spell" << std::endl;
+    }
+     
+    if ( this->getCanCast() ) {
         Unit *unit = spell.summon();
         std::string newName = this->name;
         
@@ -55,6 +58,8 @@ void Warlock::castAction(Spell& spell) {
         this->scState->reduceMana(spell.getManaCost());
         
         std::cout << "\033[31m" << this->getName() << " " << this->getType() << " casted spell " << spell.getName() << " and summoned " << unit->getName() << " " << unit->getType() << "\033[30m" << std::endl;
+    } else {
+        std::cout << "\033[35m" << "Unit " << this->name << " can't cast anymore" << "\033[30m" << std::endl;
     }
 }
 
@@ -70,33 +75,6 @@ void Warlock::showSpecial() const {
 
 void Warlock::useAbility() {
     this->castAction(this->getSpell("Summon Demon"));
-}
-
-void Warlock::attack(Unit& enemy) {
-    if ( !isAlive() ) {
-        std::cout << "Unit " << this->name << " is dead and can't attack" << std::endl;
-        return;
-    }
-    
-    if ( &enemy == this ) {
-        std::cout << "Self attack!" << std::endl;
-        return;
-    }
-    
-    this->baseAttack->attack(*this, enemy);
-    
-    if ( !this->demons.empty() ) {
-        std::set<Unit*>::iterator it = this->demons.begin();
-        
-        for ( ; it != this->demons.end(); it++ ) {
-            if (enemy.isAlive() ) {
-                (*it)->attack(enemy);
-            }
-        }
-    }
-}
-void Warlock::counterAttack(Unit& enemy) {
-    this->baseAttack->counterAttack(*this, enemy);
 }
 
 std::ostream& operator<<(std::ostream& out, const std::set<Unit*>& demons) {
