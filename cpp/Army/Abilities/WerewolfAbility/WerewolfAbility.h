@@ -8,6 +8,7 @@
 #include "../../Attacks/WerewolfAttack/WerewolfAttack.h"
 #include "../../States/WolfState/WolfState.h"
 #include "../../States/WerewolfState/WerewolfState.h"
+#include "../../Units/SpellCaster.h"
 
 class WerewolfAbility : public Ability{
     public:
@@ -18,6 +19,7 @@ class WerewolfAbility : public Ability{
         void useSelfAbility(Unit& unit);
         void selfTransform(Unit& unit);
         void infect(Unit& unit);
+        void infectSpellCaster(Unit& unit);
 };
 
 #endif // WEREWOLFABILITY_H

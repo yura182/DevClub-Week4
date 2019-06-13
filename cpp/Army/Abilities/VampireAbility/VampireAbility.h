@@ -19,6 +19,7 @@ class VampireAbility : public Ability {
         void useAbility(Unit& unit);
         void useSelfAbility(Unit& unit);
         void infect(Unit& unit);
+        void infectSpellCaster(Unit& unit);
 };
 
 #endif // VAMPIREABILITY_H

@@ -18,10 +18,10 @@ int main() {
     // Unit *ber = new Berserker("Tolya");
     Unit *vam = new Vampire("Gena");
     // Unit *wer = new Werewolf("Kolya");
-    SpellCaster *wiz = new Wizard("Georgy");
+    // SpellCaster *wiz = new Wizard("Georgy");
     // SpellCaster *heal = new Healer("Dima");
     // SpellCaster *pri = new Priest("Anatoliy");
-    // SpellCaster *war = new Warlock("Zhenya");
+    SpellCaster *war = new Warlock("Zhenya");
     // SpellCaster *nec = new Necromancer("Timur");
     // SpellCaster *nec1 = new Necromancer("Budlo");
     
@@ -31,27 +31,25 @@ int main() {
     // std::cout << *ber << std::endl;
     std::cout << *vam << std::endl;
     // std::cout << *wer << std::endl;
-    std::cout << *wiz << std::endl;
+    // std::cout << *wiz << std::endl;
     // std::cout << *heal << std::endl;
     // std::cout << *pri << std::endl;
-    // std::cout << *war << std::endl;
+    std::cout << *war << std::endl;
     // std::cout << *nec << std::endl;
     // std::cout << *nec1 << std::endl;
     
-    vam->useAbility(*wiz);
-    std::cout << *wiz << std::endl;
-    wiz->castAction(*vam, wiz->getSpell("Fireball"));
-    std::cout << *vam << std::endl;
+
+    
     
     // delete sol;
     // delete rog;
     // delete ber;
     delete vam;
     // delete wer;
-    delete wiz;
+    // delete wiz;
     // delete heal;
     // delete pri;
-    // delete war;
+    delete war;
     // delete nec;
     // delete nec1;
     
