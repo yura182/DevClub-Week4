@@ -6,6 +6,7 @@
 #include "../SpellCaster.h"
 #include "../../States/State.h"
 #include "../../Cast/Cast.h"
+#include "../../Attacks/WarlockAttack/WarlockAttack.h"
 
 class Warlock : public SpellCaster {
     private:
@@ -19,9 +20,6 @@ class Warlock : public SpellCaster {
         
         void showSpecial() const;
         void useAbility();
-        
-        void attack(Unit& enemy);
-        void counterAttack(Unit& enemy);
 };
 
 std::ostream& operator<<(std::ostream& out, const std::set<Unit*>& demons);
