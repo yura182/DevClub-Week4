@@ -13,10 +13,12 @@
 #include "../Interfaces/Observable.h"
 #include "../Interfaces/Observer.h"
 #include "../Abilities/Ability.h"
+#include "../Location/Location.h"
 
 class State;
 class BaseAttack;
 class Ability;
+class Location;
 
 enum class UnitType {
     SOLDIER,
@@ -44,6 +46,7 @@ class Unit : public Observable {
         State *altState;
         BaseAttack *baseAttack;
         Ability *ability;
+        Location *location;
         UnitType type;
         UnitType stateType;
         
@@ -66,6 +69,8 @@ class Unit : public Observable {
         
         BaseAttack* getAttack() const;
         Ability* getAbility() const;
+        
+        Location& getLocation() const;
         
         int getDamage() const;
         

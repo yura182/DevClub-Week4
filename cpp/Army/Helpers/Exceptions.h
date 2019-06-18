@@ -4,5 +4,6 @@
 class UnitIsDead {};
 class HitPointsLimit {};
 class UnitDontHaveSpell{};
+class LocationIsNotEmpty{};
 
 #endif // EXCEPTIONS_H
