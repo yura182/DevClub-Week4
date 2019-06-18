@@ -4,6 +4,7 @@ Unit::Unit(const std::string& name, State *state, BaseAttack *bAttack, UnitType 
     this->name = name;
     this->state = state;
     this->baseAttack = bAttack;
+    this->location = new Location(1, 2);
     this->type = type;
     this->stateType = stateType;
     this->altState = NULL;
@@ -15,6 +16,7 @@ Unit::Unit(const std::string& name, State *state, BaseAttack *bAttack, UnitType 
 Unit::~Unit() {
     delete this->state;
     delete this->baseAttack;
+    delete this->location;
     
     if ( this->altState ) {
         delete this->altState;
@@ -67,6 +69,10 @@ BaseAttack* Unit::getAttack() const {
 
 Ability* Unit::getAbility() const {
     return this->ability;
+}
+
+Location& Unit::getLocation() const {
+    return *(this->location);
 }
 
 void Unit::addHitPoints(int hp) {
@@ -206,7 +212,7 @@ std::ostream& operator<<(std::ostream& out, const Unit& unit) {
     out << "\033[30m" << unit.getName();
     out << " " << unit.getType();
     out << " [";
-    out << unit.getState() << "]";
+    out << unit.getState() << ", " << unit.getLocation() << "]";
     
     return out;
 }
