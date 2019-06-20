@@ -99,6 +99,7 @@ class Unit : public Observable {
         
         void move(char direction);
         double distance(Unit& unit);
+        char typeToChar(const UnitType& type);
 };
 
 std::ostream& operator<<(std::ostream& out, const Unit& unit);

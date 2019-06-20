@@ -4,7 +4,7 @@ Unit::Unit(const std::string& name, int x, int y, State *state, BaseAttack *bAtt
     this->name = name;
     this->state = state;
     this->baseAttack = bAttack;
-    this->location = new Location(x, y, name);
+    this->location = new Location(x, y, typeToChar(type));
     this->type = type;
     this->stateType = stateType;
     this->altState = NULL;
@@ -278,4 +278,50 @@ std::ostream& operator<<(std::ostream& out, const UnitType& type) {
             break;
     }
     return out;
+}
+
+char Unit::typeToChar(const UnitType& type) {
+    char letter;
+    switch (type) {
+        case UnitType::SOLDIER:
+            letter = 'S';
+            break;
+        case UnitType::ROGUE:
+            letter = 'R';
+            break;
+        case UnitType::BERSERKER:
+            letter = 'B';
+            break;
+        case UnitType::VAMPIRE:
+            letter = 'V';
+            break;
+        case UnitType::WEREWOLF:
+            letter = 'W';
+            break;
+        case UnitType::WOLF:
+            letter = 'W';
+            break;
+        case UnitType::WIZARD:
+            letter = 'W';
+            break;
+        case UnitType::HEALER:
+            letter = 'H';
+            break;
+        case UnitType::PRIEST:
+            letter = 'P';
+            break;
+        case UnitType::WARLOCK:
+            letter = 'W';
+            break;
+        case UnitType::DEMON:
+            letter = 'D';
+            break;
+        case UnitType::NECROMANCER:
+            letter = 'N';
+            break;
+        default:
+            letter = 'U';
+            break;
+    }
+    return letter;
 }

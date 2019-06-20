@@ -1,6 +1,6 @@
 #include "Location.h"
 
-Location::Location(int x, int y, const std::string& name) {
+Location::Location(int x, int y, char letter) {
     if ( locations.empty() ) {
         locations = init();
         freeLocations = locations;
@@ -13,7 +13,7 @@ Location::Location(int x, int y, const std::string& name) {
     }
     
     freeLocations.erase(point);
-    occupiedLocations.insert(std::pair<Point,char>(point, name[0]));
+    occupiedLocations.insert(std::pair<Point,char>(point, letter));
     
     debugPrint("Location created");
 }
@@ -52,6 +52,7 @@ const std::map<Point,char>& Location::getOccupiedLocations() {
 }
 
 void Location::printField() const {
+    std::cout << "\033[1;34m" << std::setw(FIELD_WIDTH / 2 + 5) << "BATTLEFIELD" << std::endl;
     for ( int i = 1; i <= FIELD_HEIGHT; i++ ) {
         for ( int j = 1; j <= FIELD_WIDTH; j++ ) {
             std::cout << "\033[0;30;44m" << " ";

@@ -6,7 +6,7 @@
 
 #include <set>
 #include <map>
-#include <utility>
+#include <iomanip>
 #include "../Helpers/Debug.h"
 #include "../Helpers/Exceptions.h"
 #include "Point.h"
@@ -19,7 +19,7 @@ class Location {
         static std::set<Point> freeLocations;
         static std::map<Point,char> occupiedLocations;
     public:
-        Location(int x, int y, const std::string& name);
+        Location(int x, int y, char letter);
         ~Location();
         
         bool isEmptyLocation(Point& point);
