@@ -1,10 +1,10 @@
 #include "Unit.h"
 
-Unit::Unit(const std::string& name, State *state, BaseAttack *bAttack, UnitType type, UnitType stateType, Ability *ability) {
+Unit::Unit(const std::string& name, int x, int y, State *state, BaseAttack *bAttack, UnitType type, UnitType stateType, Ability *ability) {
     this->name = name;
     this->state = state;
     this->baseAttack = bAttack;
-    this->location = new Location(1, 2);
+    this->location = new Location(x, y, name);
     this->type = type;
     this->stateType = stateType;
     this->altState = NULL;
@@ -121,6 +121,11 @@ void Unit::attack(Unit& enemy) {
         return;
     }
     
+    if ( distance(enemy) > ATTACK_DIST ) {
+        std::cout << "Enemy is too far for attack" << std::endl;
+        return;
+    }
+    
     this->baseAttack->attack(*this, enemy);
 }
 void Unit::counterAttack(Unit& enemy) {
@@ -206,6 +211,19 @@ void Unit::setAltState(State *state) {
 
 void Unit::setAbility(Ability *ability) {
     this->ability = ability;
+}
+
+void Unit::move(char direction) {
+    if ( !isAlive() ) {
+        std::cout << "Unit " << this->name << " is dead and can't move" << std::endl;
+        return;
+    }
+    
+    this->location->move(direction);
+}
+
+double Unit::distance(Unit& unit) {
+    return this->getLocation().getPoint().distance(unit.getLocation().getPoint());
 }
 
 std::ostream& operator<<(std::ostream& out, const Unit& unit) {

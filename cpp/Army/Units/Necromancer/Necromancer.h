@@ -11,7 +11,7 @@
 
 class Necromancer : public SpellCaster, public Observer {
     public:
-        Necromancer(const std::string& name, int mana=intVal(Mana::NECROMANCER), int hp=intVal(Health::NECROMANCER), int dmg=intVal(Damage::NECROMANCER));
+        Necromancer(const std::string& name, int x, int y, int mana=intVal(Mana::NECROMANCER), int hp=intVal(Health::NECROMANCER), int dmg=intVal(Damage::NECROMANCER));
         ~Necromancer();
         
         virtual void update(int hp);

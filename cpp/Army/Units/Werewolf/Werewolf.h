@@ -10,7 +10,7 @@
 
 class Werewolf : public Unit {
     public:
-        Werewolf(const std::string& name, int hp=intVal(Health::WEREWOLF), int dmg=intVal(Damage::WEREWOLF));
+        Werewolf(const std::string& name, int x, int y, int hp=intVal(Health::WEREWOLF), int dmg=intVal(Damage::WEREWOLF));
         ~Werewolf();
 };
 

@@ -26,7 +26,7 @@ SpellType Spell::getType() const {
     return this->type;
 }
 
-Unit* Spell::summon() const {}
+Unit* Spell::summon(int x, int y) const {}
 
 std::ostream& operator<<(std::ostream& out, const Spell& spell) {
     SpellType type = spell.getType();

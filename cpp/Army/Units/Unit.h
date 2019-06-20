@@ -2,6 +2,7 @@
 #define UNIT_H
 
 #define PART_HP_NECR 0.1
+#define ATTACK_DIST 1
 
 #include <iostream>
 #include <set>
@@ -52,7 +53,7 @@ class Unit : public Observable {
         
         std::set<Observer*> observers;
         
-        Unit(const std::string& name, State *state, BaseAttack *bAttack, UnitType type, UnitType stateType, Ability *ability=NULL);
+        Unit(const std::string& name, int x, int y, State *state, BaseAttack *bAttack, UnitType type, UnitType stateType, Ability *ability=NULL);
     public:
         virtual ~Unit();
         
@@ -95,6 +96,9 @@ class Unit : public Observable {
         void setState(State *state);
         void setAltState(State *state);
         void setAbility(Ability *ability);
+        
+        void move(char direction);
+        double distance(Unit& unit);
 };
 
 std::ostream& operator<<(std::ostream& out, const Unit& unit);

@@ -11,7 +11,7 @@
 
 class Vampire : public Unit {
     public:
-        Vampire(const std::string& name, int hp=intVal(Health::VAMPIRE), int dmg=intVal(Damage::VAMPIRE));
+        Vampire(const std::string& name, int x, int y, int hp=intVal(Health::VAMPIRE), int dmg=intVal(Damage::VAMPIRE));
         ~Vampire();
 };
 

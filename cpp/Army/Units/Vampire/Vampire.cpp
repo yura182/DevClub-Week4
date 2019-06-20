@@ -1,7 +1,7 @@
 #include "Vampire.h"
 
-Vampire::Vampire(const std::string& name, int hp, int dmg) 
-                : Unit(name,
+Vampire::Vampire(const std::string& name, int x, int y, int hp, int dmg) 
+                : Unit(name, x, y,
                   new State(hp, dmg, (int)(hp * HP_LIMIT_COEFF_VAM)),
                   new VampireAttack(),
                   UnitType::VAMPIRE,

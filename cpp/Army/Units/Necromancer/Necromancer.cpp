@@ -1,7 +1,7 @@
 #include "Necromancer.h"
 
-Necromancer::Necromancer(const std::string& name, int mana, int hp, int dmg)
-             : SpellCaster(name,
+Necromancer::Necromancer(const std::string& name, int x, int y, int mana, int hp, int dmg)
+             : SpellCaster(name, x, y,
                new State(hp, dmg, (int)(hp * HP_LIMIT_COEFF_NECR)),
                new SpellCasterState(mana),
                new BaseAttack(),

@@ -8,7 +8,7 @@
 
 class Healer : public SpellCaster {
     public:
-        Healer(const std::string& name, int mana=intVal(Mana::HEALER), int hp=intVal(Health::HEALER), int dmg=intVal(Damage::HEALER));
+        Healer(const std::string& name, int x, int y, int mana=intVal(Mana::HEALER), int hp=intVal(Health::HEALER), int dmg=intVal(Damage::HEALER));
         ~Healer();
 };
 

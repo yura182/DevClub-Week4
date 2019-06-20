@@ -1,7 +1,7 @@
 #include "Healer.h"
 
-Healer::Healer(const std::string& name, int mana, int hp, int dmg)
-             : SpellCaster(name,
+Healer::Healer(const std::string& name, int x, int y, int mana, int hp, int dmg)
+             : SpellCaster(name, x, y,
                new State(hp, dmg),
                new SpellCasterState(mana),
                new BaseAttack(),

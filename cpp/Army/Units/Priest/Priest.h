@@ -9,7 +9,7 @@
 
 class Priest : public SpellCaster {
     public:
-        Priest(const std::string& name, int mana=intVal(Mana::PRIEST), int hp=intVal(Health::PRIEST), int dmg=intVal(Damage::PRIEST));
+        Priest(const std::string& name, int x, int y, int mana=intVal(Mana::PRIEST), int hp=intVal(Health::PRIEST), int dmg=intVal(Damage::PRIEST));
         ~Priest();
 };
 

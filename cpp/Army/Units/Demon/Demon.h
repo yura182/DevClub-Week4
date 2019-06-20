@@ -8,7 +8,7 @@
 
 class Demon : public Soldier {
     public:
-        Demon(const std::string& name, int hp=intVal(Health::DEMON), int dmg=intVal(Damage::DEMON));
+        Demon(const std::string& name, int x, int y, int hp=intVal(Health::DEMON), int dmg=intVal(Damage::DEMON));
         ~Demon();
 };
 

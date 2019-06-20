@@ -1,7 +1,7 @@
 #include "Werewolf.h"
 
-Werewolf::Werewolf(const std::string& name, int hp, int dmg) 
-                : Unit(name,
+Werewolf::Werewolf(const std::string& name, int x, int y, int hp, int dmg) 
+                : Unit(name, x, y,
                   new WerewolfState(hp, dmg),
                   new WerewolfAttack(),
                   UnitType::WEREWOLF,

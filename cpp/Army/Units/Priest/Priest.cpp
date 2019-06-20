@@ -1,7 +1,7 @@
 #include "Priest.h"
 
-Priest::Priest(const std::string& name, int mana, int hp, int dmg)
-             : SpellCaster(name,
+Priest::Priest(const std::string& name, int x, int y, int mana, int hp, int dmg)
+             : SpellCaster(name, x, y,
                new State(hp, dmg),
                new SpellCasterState(mana),
                new PriestAttack(),

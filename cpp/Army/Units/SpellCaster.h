@@ -1,6 +1,8 @@
 #ifndef SPELLCASTER_H
 #define SPELLCASTER_H
 
+#define SPELL_DIST 2
+
 #include "../Helpers/Debug.h"
 #include "Unit.h"
 #include "../States/SpellCasterState.h"
@@ -16,7 +18,7 @@ class SpellCaster : public Unit {
         Cast *cast;
         bool canCast;
     public:
-        SpellCaster(const std::string& name, State *state, SpellCasterState *scState, BaseAttack *bAttack, SpellBook *spellBook, UnitType type, UnitType stateType, Cast *cast);
+        SpellCaster(const std::string& name, int x, int y, State *state, SpellCasterState *scState, BaseAttack *bAttack, SpellBook *spellBook, UnitType type, UnitType stateType, Cast *cast);
         virtual ~SpellCaster();
         
         SpellCasterState& getScState() const;

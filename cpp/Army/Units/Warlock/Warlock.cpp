@@ -1,7 +1,7 @@
 #include "Warlock.h"
 
-Warlock::Warlock(const std::string& name, int mana, int hp, int dmg)
-             : SpellCaster(name,
+Warlock::Warlock(const std::string& name, int x, int y, int mana, int hp, int dmg)
+             : SpellCaster(name, x, y,
                new State(hp, dmg),
                new SpellCasterState(mana),
                new WarlockAttack(),
@@ -46,7 +46,17 @@ void Warlock::castAction(Spell& spell) {
     }
      
     if ( this->getCanCast() ) {
-        Unit *unit = spell.summon();
+        Point newPoint = this->getLocation().nearestEmptyPoint(this->getLocation().getPoint());
+        
+        if ( newPoint == this->getLocation().getPoint() ) {
+            std::cout << "There is not space for deamon" << std::endl;
+            return;
+        }
+        
+        int newX = newPoint.getX();
+        int newY = newPoint.getY();
+        
+        Unit *unit = spell.summon(newX, newY);
         std::string newName = this->name;
         
         newName.append("'s slave").append(std::to_string(this->demons.size() + 1));

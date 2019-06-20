@@ -11,7 +11,7 @@ class SummonDemon : public Spell {
         SummonDemon();
         ~SummonDemon();
         
-        Unit* summon() const;
+        Unit* summon(int x, int y) const;
 };
 
 #endif // SUMMONDEMON_H

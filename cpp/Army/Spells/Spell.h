@@ -25,7 +25,7 @@ class Spell {
         int getManaCost() const;
         int getDamage() const;
         SpellType getType() const;
-        virtual Unit* summon() const;
+        virtual Unit* summon(int x, int y) const;
 };
 
 std::ostream& operator<<(std::ostream& out, const Spell& spell);

@@ -1,31 +1,51 @@
 #ifndef LOCATION_H
 #define LOCATION_H
 
+#define FIELD_WIDTH 24
+#define FIELD_HEIGHT 12
+
 #include <set>
+#include <map>
 #include <utility>
 #include "../Helpers/Debug.h"
 #include "../Helpers/Exceptions.h"
+#include "Point.h"
 
 class Location {
     private:
-        int x;
-        int y;
+        Point point;
         
-        static std::set<std::pair<int,int>> locations;
+        static std::set<Point> locations;
+        static std::set<Point> freeLocations;
+        static std::map<Point,char> occupiedLocations;
     public:
-        Location(int x, int y);
+        Location(int x, int y, const std::string& name);
         ~Location();
         
-        int getX() const;
-        int getY() const;
+        bool isEmptyLocation(Point& point);
         
-        void setXY(int x, int y);
+        const Point& getPoint() const;
         
-        bool isEmptyLocation(int x, int y) const;
+        static const std::set<Point>& getLocations();
+        static const std::set<Point>& getFreeLocations();
+        static const std::map<Point,char>& getOccupiedLocations();
         
-        static const std::set<std::pair<int,int>> getLocations();
+        void printField() const;
+        
+        static std::set<Point> init();
+        
+        void move(char direction);
+        
+        void moveUp();
+        void moveDown();
+        void moveLeft();
+        void moveRight();
+        
+        void changePosition(Point& newPoint);
+        
+        Point nearestEmptyPoint(const Point& point);
 };
 
-std::ostream& operator<<(std::ostream& out, const Location& location);
+std::ostream& operator<<(std::ostream& out, Location& location);
 
 #endif // LOCATION_H

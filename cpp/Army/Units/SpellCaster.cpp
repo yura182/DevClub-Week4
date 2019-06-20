@@ -1,11 +1,11 @@
 #include "SpellCaster.h"
 
-SpellCaster::SpellCaster(const std::string& name,
+SpellCaster::SpellCaster(const std::string& name, int x, int y,
                          State *state,
                          SpellCasterState *scState,
                          BaseAttack *bAttack, SpellBook *spellBook,
                          UnitType type, UnitType stateType, Cast *cast)
-                       : Unit(name, state, bAttack, type, stateType) {
+                       : Unit(name, x, y, state, bAttack, type, stateType) {
     this->scState = scState;
     this->spellBook = spellBook;
     this->cast = cast;
@@ -85,6 +85,11 @@ void SpellCaster::castAction(Unit& unit, Spell& spell) {
         return;
     }
     
+    if ( this->distance(unit) > SPELL_DIST ) {
+        std::cout << "Enemy is too far for cast action" << std::endl;
+        return;
+    }
+    
     std::cout << "\033[31m" << this->getName() << " " << this->getType() << " casted spell " << spell.getName() << " to " << unit.getName() << " " << unit.getType() << "\033[30m" << std::endl;
     
     this->cast->action(unit, spell);
@@ -112,6 +117,8 @@ std::ostream& operator<<(std::ostream& out, const SpellCaster& sCaster) {
     if ( sCaster.getCanCast() ) {
         out << sCaster.getScState();
     }
+    
+    out << ", " << sCaster.getLocation();
     
     out << "]";
     return out;

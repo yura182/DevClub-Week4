@@ -1,7 +1,7 @@
 #include "Berserker.h"
 
-Berserker::Berserker(const std::string& name, int hp, int dmg) 
-                : Unit(name,
+Berserker::Berserker(const std::string& name, int x, int y, int hp, int dmg) 
+                : Unit(name, x, y,
                   new BerserkerState(hp, dmg),
                   new BaseAttack(),
                   UnitType::BERSERKER,

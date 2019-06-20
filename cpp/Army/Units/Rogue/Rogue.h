@@ -8,7 +8,7 @@
 
 class Rogue : public Unit {
     public:
-        Rogue(const std::string& name, int hp=intVal(Health::ROGUE), int dmg=intVal(Damage::ROGUE));
+        Rogue(const std::string& name, int x, int y, int hp=intVal(Health::ROGUE), int dmg=intVal(Damage::ROGUE));
         ~Rogue();
 };
 
