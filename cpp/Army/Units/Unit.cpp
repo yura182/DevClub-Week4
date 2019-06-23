@@ -122,7 +122,7 @@ void Unit::attack(Unit& enemy) {
     }
     
     if ( distance(enemy) > ATTACK_DIST ) {
-        std::cout << "Enemy is too far for attack" << std::endl;
+        std::cout << "\033[37m" << enemy.getName() << " " << enemy.getType() << " is too far for " << this->name << "'s " << this->type << " attack" <<"\033[30m" << std::endl;
         return;
     }
     
@@ -141,7 +141,7 @@ void Unit::useAbility() {
     if ( this->ability ) {
         this->ability->useSelfAbility(*this);
     } else {
-        std::cout << this->name << " " << this->type << " dont have ability" << std::endl;
+        std::cout << "\033[37m" << this->name << " " << this->type << " dont have ability" << "\033[30m" << std::endl;
     }
 }
 
@@ -152,9 +152,13 @@ void Unit::useAbility(Unit& unit) {
     }
     
     if ( this->ability ) {
+        if ( distance(unit) > ATTACK_DIST ) {
+        std::cout << "\033[37m" << unit.getName() << " " << unit.getType() << " is too far for " << this->name << "'s " << this->type << " ability" << "\033[30m" << std::endl;
+        return;
+        }
         this->ability->useAbility(unit);
-    } else {
-        std::cout << this->name << " " << this->type << " dont have ability" <<  std::endl;
+    } else {    
+        std::cout << this->name << " " << this->type << " dont have ability" << "\033[30m" << std::endl;
     }
 }
 
@@ -164,6 +168,7 @@ void Unit::addObserver(Observer *observer) {
     if ( it == this->observers.end() ) {
         this->observers.insert(observer);
         
+        std::cout << "\033[37m" << this->name << " " << this->type << " added observer" << "\033[30m" << std::endl;
         debugPrint("Added observer", this->name);
     }
 }
@@ -185,6 +190,7 @@ void Unit::notify() {
         
         for ( ; it != this->observers.end(); it++ ) {
             (*it)->update(partHp);
+            this->removeObserver(*it);
         }
     }
 }
@@ -219,6 +225,7 @@ void Unit::move(char direction) {
         return;
     }
     
+    std::cout << this->name << " " << this->type;
     this->location->move(direction);
 }
 

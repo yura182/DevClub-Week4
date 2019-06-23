@@ -28,7 +28,7 @@ class Location {
         
         static const std::set<Point>& getLocations();
         static const std::set<Point>& getFreeLocations();
-        static const std::map<Point,char>& getOccupiedLocations();
+        static std::map<Point,char>& getOccupiedLocations();
         
         void printField() const;
         

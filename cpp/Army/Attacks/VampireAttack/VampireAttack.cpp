@@ -21,7 +21,7 @@ void VampireAttack::attack(Unit& attacker, Unit& victim) {
         attacker.addHitPoints(stealedHp);
     }
     
-    std::cout << "\033[31m" << attacker.getName() << " attacked " << victim.getName() <<  " and stealed " << stealedHp << " health points" << std::endl;
+    std::cout << "\033[31m" << attacker.getName() << " " << attacker.getType() << " attacked " << victim.getName() << " " << victim.getType() <<  " and stealed " << stealedHp << " health points" << std::endl;
     
     if ( victim.isAlive() ) {
         if ( randValue(100) > 102 ) {
@@ -46,7 +46,7 @@ void VampireAttack::counterAttack(Unit& attacker, Unit& victim) {
         attacker.addHitPoints(stealedHp);
     }
     
-    std::cout << "\033[31m" << attacker.getName() << " counter attacked " << victim.getName() <<  " and stealed " << stealedHp << " health points" << std::endl;
+    std::cout << "\033[31m" << attacker.getName() << " " << attacker.getType() << " counter attacked " << victim.getName() << " " << victim.getType() <<  " and stealed " << stealedHp << " health points" << std::endl;
     
     if ( victim.isAlive() ) {
         if ( randValue(100) > 103 ) {

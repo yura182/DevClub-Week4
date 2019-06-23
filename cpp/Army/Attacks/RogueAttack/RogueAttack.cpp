@@ -10,7 +10,7 @@ RogueAttack::~RogueAttack() {
 void RogueAttack::attack(Unit& attacker, Unit& victim) {
     victim.takeDamage(attacker.getDamage());
     
-    std::cout << "\033[31m" << attacker.getName() << " attacked " << victim.getName() << std::endl;
+    std::cout << "\033[31m" << attacker.getName() << " " << attacker.getType() << " attacked " << victim.getName() << " " << victim.getType() << std::endl;
     
     if ( !victim.isAlive() ) {
         victim.notify();

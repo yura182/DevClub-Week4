@@ -86,7 +86,7 @@ void SpellCaster::castAction(Unit& unit, Spell& spell) {
     }
     
     if ( this->distance(unit) > SPELL_DIST ) {
-        std::cout << "Enemy is too far for cast action" << std::endl;
+        std::cout << "\033[37m" << unit.getName() << " " << unit.getType() << " is too far for " << this->name << "'s " << this->type << " cast" << "\033[30m" << std::endl;
         return;
     }
     
@@ -100,7 +100,7 @@ void SpellCaster::castAction(Unit& unit, Spell& spell) {
 void SpellCaster::castAction(Spell& spell) {}
 
 void SpellCaster::showSpellBook() const {
-    std::cout << "\033[32m" << "---- " << this->getName() << "'s Spell Book ----" << std::endl;
+    std::cout << "\033[32m" << "---- " << this->getName() << "'s " << this->getType() << " Spell Book ----" << std::endl;
     std::cout << this->getSpellBook() << "\033[30m" << std::endl;
 }
 

@@ -3,6 +3,7 @@
 
 #define TRANSFORM_COEF 2
 
+#include <sstream>
 #include "../../Helpers/Debug.h"
 #include "../Ability.h"
 #include "../../Attacks/WerewolfAttack/WerewolfAttack.h"

@@ -51,7 +51,7 @@ enum class SpellCost {
     FIREBALL = 10,
     MAGICARROW = 7,
     CURE = 9,
-    SUMMONDEMON = 10
+    SUMMONDEMON = 15
 };
 
 template <typename Enumeration>

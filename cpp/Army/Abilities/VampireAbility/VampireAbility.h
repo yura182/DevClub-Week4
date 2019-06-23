@@ -1,6 +1,7 @@
 #ifndef VAMPIREABILITY_H
 #define VAMPIREABILITY_H
 
+#include <sstream>
 #include "../../Helpers/Debug.h"
 #include "../Ability.h"
 #include "../../Attacks/VampireAttack/VampireAttack.h"
@@ -20,6 +21,8 @@ class VampireAbility : public Ability {
         void useSelfAbility(Unit& unit);
         void infect(Unit& unit);
         void infectSpellCaster(Unit& unit);
+        
+        void setPoint(Unit& unit);
 };
 
 #endif // VAMPIREABILITY_H

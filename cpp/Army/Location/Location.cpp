@@ -47,7 +47,7 @@ const std::set<Point>& Location::getFreeLocations() {
     return freeLocations;
 }
 
-const std::map<Point,char>& Location::getOccupiedLocations() {
+std::map<Point,char>& Location::getOccupiedLocations() {
     return occupiedLocations;
 }
 
@@ -112,20 +112,20 @@ void Location::moveUp() {
     int currentY = this->point.getY();
     
     if ( currentY == FIELD_HEIGHT ) {
-        std::cout << "Unit can't move there" << std::endl;
+        std::cout << " can't move there" << std::endl;
         return;
     }
     
     Point newPoint(currentX, currentY+1);
     
     if ( !isEmptyLocation(newPoint) ) {
-        std::cout << "This location is ocuppied, choose another or attack!" << std::endl;
+        std::cout << " can't move there, this location is ocuppied, choose another or attack!" << std::endl;
         return;
     }
     
     changePosition(newPoint);
     
-    std::cout << "Unit move to point " << this->point << std::endl;
+    std::cout << " move to point " << this->point << std::endl;
     
 }
 
@@ -134,20 +134,20 @@ void Location::moveDown() {
     int currentY = this->point.getY();
     
     if ( currentY == 1 ) {
-        std::cout << "Unit can't move there" << std::endl;
+        std::cout << " can't move there" << std::endl;
         return;
     }
     
     Point newPoint(currentX, currentY-1);
     
     if ( !isEmptyLocation(newPoint) ) {
-        std::cout << "This location is ocuppied, choose another or attack!" << std::endl;
+        std::cout << " can't move there, this location is ocuppied, choose another or attack!" << std::endl;
         return;
     }
     
     changePosition(newPoint);
     
-    std::cout << "Unit move to point " << this->point << std::endl;
+    std::cout << " move to point " << this->point << std::endl;
 }
 
 void Location::moveLeft() {
@@ -155,20 +155,20 @@ void Location::moveLeft() {
     int currentY = this->point.getY();
     
     if ( currentX == 1 ) {
-        std::cout << "Unit can't move there" << std::endl;
+        std::cout << " can't move there" << std::endl;
         return;
     }
     
     Point newPoint(currentX-1, currentY);
     
     if ( !isEmptyLocation(newPoint) ) {
-        std::cout << "This location is ocuppied, choose another or attack!" << std::endl;
+        std::cout << " can't move there, this location is ocuppied, choose another or attack!" << std::endl;
         return;
     }
     
     changePosition(newPoint);
     
-    std::cout << "Unit move to point " << this->point << std::endl;
+    std::cout << " move to point " << this->point << std::endl;
 }
 
 void Location::moveRight() {
@@ -176,20 +176,20 @@ void Location::moveRight() {
     int currentY = this->point.getY();
     
     if ( currentY == FIELD_WIDTH ) {
-        std::cout << "Unit can't move there" << std::endl;
+        std::cout << " can't move there" << std::endl;
         return;
     }
     
     Point newPoint(currentX+1, currentY);
     
     if ( !isEmptyLocation(newPoint) ) {
-        std::cout << "This location is ocuppied, choose another or attack!" << std::endl;
+        std::cout << " can't move there, this location is ocuppied, choose another or attack!" << std::endl;
         return;
     }
     
     changePosition(newPoint);
     
-    std::cout << "Unit move to point " << this->point << std::endl;
+    std::cout << " move to point " << this->point << std::endl;
 }
 
 void Location::changePosition(Point& newPoint) {
